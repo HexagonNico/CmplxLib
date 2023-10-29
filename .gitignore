@@ -1,0 +1,8 @@
+# Scala sbt
+project/target/
+target/
+
+# Intellij
+.bsp/
+.idea/
+*.iws
