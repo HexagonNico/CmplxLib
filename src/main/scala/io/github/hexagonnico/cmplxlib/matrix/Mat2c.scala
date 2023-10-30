@@ -54,7 +54,32 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) extends
     this.m10.conjugate, this.m11.conjugate
   )
 
-  override def power(exp: Int): Mat2c = ???
+  override def power(exp: Int): Mat2c = {
+    if (exp < 0) {
+      this.transposed.power(-exp)
+    } else if (exp == 0) {
+      Mat2c.Identity
+    } else {
+      this * this.power(exp - 1)
+    }
+  }
 
-  override def determinant: Complex = ???
+  override def determinant: Complex = this.m00 * this.m11 - this.m01 * this.m10
+}
+
+object Mat2c {
+
+  val Identity: Mat2c = Mat2c(Complex.One, Complex.Zero, Complex.Zero, Complex.One)
+
+  val Zero: Mat2c = Mat2c(Complex.Zero, Complex.Zero, Complex.Zero, Complex.Zero)
+
+  implicit class RealExtender(val r: Double) extends AnyVal {
+
+    def *(m: Mat2c): Mat2c = m * r
+  }
+
+  implicit class ComplexExtender(val z: Complex) extends AnyVal {
+
+    def *(m: Mat2c): Mat2c = m * z
+  }
 }

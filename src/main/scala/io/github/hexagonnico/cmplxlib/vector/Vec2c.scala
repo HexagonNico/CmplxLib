@@ -26,11 +26,11 @@ case class Vec2c(x: Complex, y: Complex) extends ComplexVector[Vec2c] {
 
   override def *(v: Vec2c): Vec2c = this * (v.x, v.y)
 
-  def dot(x: Complex, y: Complex): Complex = this.x * x + this.y * y
+  def dot(x: Complex, y: Complex): Complex = this.x * x.conjugate + this.y * y.conjugate
 
   override def dot(v: Vec2c): Complex = this.dot(v.x, v.y)
 
-  override def lengthSquared: Complex = this dot this
+  override def lengthSquared: Double = (this dot this).real
 
   override def reciprocal: Vec2c = Vec2c(this.x.reciprocal, this.y.reciprocal)
 

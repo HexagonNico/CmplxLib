@@ -71,7 +71,11 @@ case class Complex(a: Double, b: Double) extends Double2 {
 
 object Complex {
 
+  val One: Complex = Complex(1.0, 0.0)
+
   val I: Complex = Complex(0.0, 1.0)
+
+  val Zero: Complex = Complex(0.0, 0.0)
 
   def abs(z: Complex): Double = math.sqrt(z.a * z.a + z.b * z.b)
 
@@ -92,7 +96,7 @@ object Complex {
 
   def acos(z: Complex): Complex = 0.5 * math.Pi + I * log(I * z + sqrt(1.0 - z * z))
 
-  implicit class CommutativeExtender(val r: Double) extends AnyVal {
+  implicit class RealExtender(val r: Double) extends AnyVal {
 
     def +(z: Complex): Complex = z + r
 

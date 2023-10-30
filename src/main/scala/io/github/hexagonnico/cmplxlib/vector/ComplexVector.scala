@@ -23,13 +23,13 @@ abstract class ComplexVector[V <: ComplexVector[V]] extends VecAbstract[V] {
 
   def dot(v: V): Complex
 
-  def lengthSquared: Complex
+  def lengthSquared: Double
 
-  def length: Complex = Complex.sqrt(this.lengthSquared)
+  def length: Double = math.sqrt(this.lengthSquared)
 
   def normalized: V = this / this.length
 
-  override def angle(v: V): Double = ???
+  override def angle(v: V): Double = math.acos((this dot v).real / (this.length * v.length))
 
   def reciprocal: V
 
