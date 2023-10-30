@@ -5,5 +5,5 @@ ThisBuild / scalaVersion := "2.13.12"
 libraryDependencies += "io.github.hexagonnico" % "vecmatlib" % "2.2"
 
 lazy val root = (project in file(".")).settings(
-  name := "VecMatLib"
+  name := "CmplxLib"
 )
