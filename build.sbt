@@ -7,3 +7,6 @@ libraryDependencies += "io.github.hexagonnico" % "vecmatlib" % "2.2"
 lazy val root = (project in file(".")).settings(
   name := "CmplxLib"
 )
+
+// Scala test dependency
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % Test

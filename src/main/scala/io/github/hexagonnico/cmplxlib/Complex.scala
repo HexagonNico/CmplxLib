@@ -146,20 +146,20 @@ case class Complex(a: Double, b: Double) extends Double2 {
   /**
    * Returns the product between this complex number and the given real number.
    *
-   * @param k The real number to multiply
+   * @param r The real number to multiply
    * @return The product between this complex number and the given real number
    */
-  def *(k: Double): Complex = Complex(this.a * k, this.b * k)
+  def *(r: Double): Complex = Complex(this.a * r, this.b * r)
 
   /**
    * Returns the product between this complex number and the given real number.
    *
    * This method can be used in place of the '*' operator for better interoperability with Java.
    *
-   * @param k The real number to multiply
+   * @param r The real number to multiply
    * @return The product between this complex number and the given real number
    */
-  def multiply(k: Double): Complex = this * k
+  def multiply(r: Double): Complex = this * r
 
   /**
    * Returns the product between this complex number and the number `a + ib`.
@@ -202,20 +202,20 @@ case class Complex(a: Double, b: Double) extends Double2 {
   /**
    * Returns the result of the division between this complex number and the given real number.
    *
-   * @param k The real number by which this complex number is divided
+   * @param r The real number by which this complex number is divided
    * @return The result of the division between this complex number and the given real number
    */
-  def /(k: Double): Complex = Complex(this.a / k, this.b / k)
+  def /(r: Double): Complex = Complex(this.a / r, this.b / r)
 
   /**
    * Returns the result of the division between this complex number and the given real number.
    *
    * This method can be used in place of the '/' operator for better interoperability with Java.
    *
-   * @param k The real number by which this complex number is divided
+   * @param r The real number by which this complex number is divided
    * @return The result of the division between this complex number and the given real number
    */
-  def divide(k: Double): Complex = this / k
+  def divide(r: Double): Complex = this / r
 
   /**
    * Returns the complex conjugate of this complex number.
@@ -328,12 +328,16 @@ case class Complex(a: Double, b: Double) extends Double2 {
    * @return A string representation of this complex number
    */
   override def toString: String = {
-    if(this.a == 0.0 && this.b == 0.0) {
+    if (this.a == 0.0 && this.b == 0.0) {
       "0.0"
-    } else if(this.b == 0.0) {
+    } else if (this.b == 0.0) {
       this.a.toString
-    } else if(this.a == 0.0) {
-      f"${b}i"
+    } else if (this.a == 0.0) {
+      if (this.b == 1.0) {
+        "i"
+      } else {
+        f"${b}i"
+      }
     } else {
       f"$a ${if(b > 0.0) "+" else "-"} ${b.abs}i"
     }
