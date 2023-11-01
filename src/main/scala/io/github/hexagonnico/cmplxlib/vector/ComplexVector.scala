@@ -120,9 +120,18 @@ abstract class ComplexVector[V <: ComplexVector[V]] extends VecAbstract[V] {
   override def angle(v: V): Double = math.acos((this dot v).real / (this.length * v.length))
 
   /**
-   * Returns a vector whose components are the multiplicative inverse of this vectors components.
+   * Returns the complex conjugate of this vector.
    *
-   * @return A vector whose components are the multiplicative inverse of this vectors components
+   * The conjugate of a vector is a vector where every element is its complex conjugate.
+   *
+   * @return The complex conjugate of this vector
+   */
+  def conjugate: V
+
+  /**
+   * Returns a vector whose components are the multiplicative inverse of this vector's components.
+   *
+   * @return A vector whose components are the multiplicative inverse of this vector's components
    */
   def reciprocal: V
 
