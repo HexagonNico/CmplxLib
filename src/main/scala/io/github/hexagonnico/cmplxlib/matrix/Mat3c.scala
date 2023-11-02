@@ -117,7 +117,11 @@ case class Mat3c(
    * @param v The vector by which this matrix is multiplied
    * @return The product of this matrix by the given vector
    */
-  override def *(v: Vec3c): Vec3c = Vec3c(this.row0 dot v, this.row1 dot v, this.row2 dot v)
+  override def *(v: Vec3c): Vec3c = Vec3c(
+    this.m00 * v.x + this.m01 * v.y + this.m02 * v.z,
+    this.m10 * v.x + this.m11 * v.y + this.m12 * v.z,
+    this.m20 * v.x + this.m21 * v.y + this.m22 * v.z
+  )
 
   /**
    * Returns the product of this matrix by the vector with the given components.
@@ -148,9 +152,15 @@ case class Mat3c(
    * @return The product between this matrix and the given one
    */
   override def *(m: Mat3c): Mat3c = Mat3c(
-    this.row0 dot m.col0, this.row0 dot m.col1, this.row0 dot m.col2,
-    this.row1 dot m.col0, this.row1 dot m.col1, this.row1 dot m.col2,
-    this.row2 dot m.col0, this.row2 dot m.col1, this.row2 dot m.col2
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20,
+    this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21,
+    this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20,
+    this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21,
+    this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22,
+    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20,
+    this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21,
+    this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22
   )
 
   /**

@@ -90,7 +90,10 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) extends
    * @param v The vector by which this matrix is multiplied
    * @return The product of this matrix by the given vector
    */
-  override def *(v: Vec2c): Vec2c = Vec2c(this.row0 dot v, this.row1 dot v)
+  override def *(v: Vec2c): Vec2c = Vec2c(
+    this.m00 * v.x + this.m01 * v.y,
+    this.m10 * v.x + this.m11 * v.y
+  )
 
   /**
    * Returns the product of this matrix by the vector with the given components.
@@ -119,8 +122,8 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) extends
    * @return The product between this matrix and the given one
    */
   override def *(m: Mat2c): Mat2c = Mat2c(
-    this.row0 dot m.col0, this.row0 dot m.col1,
-    this.row1 dot m.col0, this.row1 dot m.col1
+    this.m00 * m.m00 + this.m01 * m.m10, this.m00 * m.m01 + this.m01 * m.m11,
+    this.m10 * m.m00 + this.m11 * m.m10, this.m10 * m.m01 + this.m11 * m.m11
   )
 
   /**

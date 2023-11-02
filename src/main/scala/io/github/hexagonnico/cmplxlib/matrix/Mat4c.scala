@@ -143,7 +143,12 @@ case class Mat4c(
    * @param v The vector by which this matrix is multiplied
    * @return The product of this matrix by the given vector
    */
-  override def *(v: Vec4c): Vec4c = Vec4c(this.row0 dot v, this.row1 dot v, this.row2 dot v, this.row3 dot v)
+  override def *(v: Vec4c): Vec4c = Vec4c(
+    this.m00 * v.x + this.m01 * v.y + this.m02 * v.z + this.m03 * v.w,
+    this.m10 * v.x + this.m11 * v.y + this.m12 * v.z + this.m13 * v.w,
+    this.m20 * v.x + this.m21 * v.y + this.m22 * v.z + this.m23 * v.w,
+    this.m30 * v.x + this.m31 * v.y + this.m32 * v.z + this.m33 * v.w
+  )
 
   /**
    * Returns the product of this matrix by the vector with the given components.
@@ -176,10 +181,22 @@ case class Mat4c(
    * @return The product between this matrix and the given one
    */
   override def *(m: Mat4c): Mat4c = Mat4c(
-    this.row0 dot m.col0, this.row0 dot m.col1, this.row0 dot m.col2, this.row0 dot m.col3,
-    this.row1 dot m.col0, this.row1 dot m.col1, this.row1 dot m.col2, this.row1 dot m.col3,
-    this.row2 dot m.col0, this.row2 dot m.col1, this.row2 dot m.col2, this.row2 dot m.col3,
-    this.row3 dot m.col0, this.row3 dot m.col1, this.row3 dot m.col2, this.row3 dot m.col3
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20 + this.m03 * m.m30,
+    this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21 + this.m03 * m.m31,
+    this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22 + this.m03 * m.m32,
+    this.m00 * m.m03 + this.m01 * m.m13 + this.m02 * m.m23 + this.m03 * m.m33,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20 + this.m13 * m.m30,
+    this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21 + this.m13 * m.m31,
+    this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22 + this.m13 * m.m32,
+    this.m10 * m.m03 + this.m11 * m.m13 + this.m12 * m.m23 + this.m13 * m.m33,
+    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20 + this.m23 * m.m30,
+    this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21 + this.m23 * m.m31,
+    this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22 + this.m23 * m.m32,
+    this.m20 * m.m03 + this.m21 * m.m13 + this.m22 * m.m23 + this.m23 * m.m33,
+    this.m30 * m.m00 + this.m31 * m.m10 + this.m32 * m.m20 + this.m33 * m.m30,
+    this.m30 * m.m01 + this.m31 * m.m11 + this.m32 * m.m21 + this.m33 * m.m31,
+    this.m30 * m.m02 + this.m31 * m.m12 + this.m32 * m.m22 + this.m33 * m.m32,
+    this.m30 * m.m03 + this.m31 * m.m13 + this.m32 * m.m23 + this.m33 * m.m33
   )
 
   /**
