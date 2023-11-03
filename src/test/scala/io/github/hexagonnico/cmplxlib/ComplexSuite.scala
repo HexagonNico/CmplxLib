@@ -1,5 +1,6 @@
 package io.github.hexagonnico.cmplxlib
 
+import org.scalactic.Tolerance.convertNumericToPlusOrMinusWrapper
 import org.scalatest.funsuite.AnyFunSuite
 
 class ComplexSuite extends AnyFunSuite {
@@ -97,9 +98,9 @@ class ComplexSuite extends AnyFunSuite {
     assert(z.abs == math.sqrt(2.0))
   }
 
-  test("Reciprocal of a complex number") {
+  test("Multiplicative inverse of a complex number") {
     val z = Complex(2.0, 1.0)
-    assert(z.reciprocal == Complex(0.4, -0.2))
+    assert(z.inverse == Complex(0.4, -0.2))
   }
 
   test("Complex number divided by a complex number") {
@@ -145,5 +146,29 @@ class ComplexSuite extends AnyFunSuite {
 
   test("Zero to string") {
     assert(Complex.Zero.toString == "0.0")
+  }
+
+  test("Sine of a complex number") {
+    val z = Complex.sin(Complex(math.Pi, 1.0))
+    assert(z.real === 0.0 +- 1e-9)
+    assert(z.imaginary === (1.0 - math.E * math.E) / (2.0 * math.E) +- 1e-9)
+  }
+
+  test("Cosine of a complex number") {
+    val z = Complex.cos(Complex.I)
+    assert(z.real === (math.E * math.E + 1.0) / (2.0 * math.E) +- 1e-9)
+    assert(z.imaginary === 0.0 +- 1e-9)
+  }
+
+  test("Inverse sine of a complex number") {
+    val z = Complex.asin(Complex(0.0, (1.0 - math.E * math.E) / (2.0 * math.E)))
+    assert(z.real === 0.0 +- 1e-9)
+    assert(z.imaginary === -1.0 +- 1e-9)
+  }
+
+  test("Inverse cosine of a complex number") {
+    val z = Complex.acos(Complex(1.0 / math.sqrt(2.0), 0.0))
+    assert(z.real === math.Pi / 4.0 +- 1e-9)
+    assert(z.imaginary === 0.0 +- 1e-9)
   }
 }

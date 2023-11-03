@@ -164,7 +164,7 @@ case class Vec4c(x: Complex, y: Complex, z: Complex, w: Complex) extends Complex
    *
    * @return A vector whose components are the multiplicative inverse of this vector's components
    */
-  override def reciprocal: Vec4c = Vec4c(this.x.reciprocal, this.y.reciprocal, this.z.reciprocal, this.w.reciprocal)
+  override def inverse: Vec4c = Vec4c(this.x.inverse, this.y.inverse, this.z.inverse, this.w.inverse)
 
   /**
    * Returns the component-wise division between this vector and the given scalars.

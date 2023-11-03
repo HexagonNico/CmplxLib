@@ -148,7 +148,7 @@ case class Vec2c(x: Complex, y: Complex) extends ComplexVector[Vec2c] {
    *
    * @return A vector whose components are the multiplicative inverse of this vectors components
    */
-  override def reciprocal: Vec2c = Vec2c(this.x.reciprocal, this.y.reciprocal)
+  override def inverse: Vec2c = Vec2c(this.x.inverse, this.y.inverse)
 
   /**
    * Returns the component-wise division between this vector and the given scalars.

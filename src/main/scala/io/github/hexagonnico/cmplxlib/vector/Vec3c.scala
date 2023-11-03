@@ -156,7 +156,7 @@ case class Vec3c(x: Complex, y: Complex, z: Complex) extends ComplexVector[Vec3c
    *
    * @return A vector whose components are the multiplicative inverse of this vector's components
    */
-  override def reciprocal: Vec3c = Vec3c(this.x.reciprocal, this.y.reciprocal, this.z.reciprocal)
+  override def inverse: Vec3c = Vec3c(this.x.inverse, this.y.inverse, this.z.inverse)
 
   /**
    * Returns the component-wise division between this vector and the given scalars.

@@ -238,7 +238,7 @@ case class Complex(a: Double, b: Double) extends Double2 {
    *
    * @return The multiplicative inverse of this complex number
    */
-  def reciprocal: Complex = this.conjugate / (this.a * this.a + this.b * b)
+  def inverse: Complex = this.conjugate / (this.a * this.a + this.b * b)
 
   /**
    * Returns the result of the division between this complex number and the given one.
@@ -246,7 +246,7 @@ case class Complex(a: Double, b: Double) extends Double2 {
    * @param z The complex number by which this one is divided
    * @return The result of the division between this complex number and the given one
    */
-  def /(z: Complex): Complex = this * z.reciprocal
+  def /(z: Complex): Complex = this * z.inverse
 
   /**
    * Returns the result of the division between this complex number and the given one.
@@ -394,7 +394,7 @@ object Complex {
    */
   def sqrt(z: Complex): Complex = {
     val abs = z.abs
-    0.5 * math.sqrt(2.0) * Complex(math.sqrt(abs + z.a), math.signum(z.b) * math.sqrt(abs - z.a))
+    Complex(math.sqrt((abs + z.a) / 2.0), math.signum(z.b) * math.sqrt((abs - z.a) / 2.0))
   }
 
   /**
@@ -458,6 +458,6 @@ object Complex {
      * @param z The complex number by which this one is divided
      * @return The result of the division of this real number by the given complex number
      */
-    def /(z: Complex): Complex = r * z.reciprocal
+    def /(z: Complex): Complex = r * z.inverse
   }
 }

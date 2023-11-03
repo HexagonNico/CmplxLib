@@ -70,7 +70,7 @@ abstract class ComplexVector[V <: ComplexVector[V]] extends VecAbstract[V] {
    * @param z The complex number by which the vector is divided
    * @return The result of the division of this vector by the given complex number
    */
-  def /(z: Complex): V = this * z.reciprocal
+  def /(z: Complex): V = this * z.inverse
 
   /**
    * Returns the result of the division of this vector by the given complex number.
@@ -133,7 +133,7 @@ abstract class ComplexVector[V <: ComplexVector[V]] extends VecAbstract[V] {
    *
    * @return A vector whose components are the multiplicative inverse of this vector's components
    */
-  def reciprocal: V
+  def inverse: V
 
   /**
    * Returns the component-wise division between this vector and the given one.
@@ -141,7 +141,7 @@ abstract class ComplexVector[V <: ComplexVector[V]] extends VecAbstract[V] {
    * @param v The second operand of the division
    * @return The component-wise division between this vector and the given one
    */
-  def /(v: V): V = this * v.reciprocal
+  def /(v: V): V = this * v.inverse
 
   /**
    * Returns the component-wise division between this vector and the given one.

@@ -19,8 +19,8 @@ class Vec3cSuite extends AnyFunSuite {
   }
 
   test("Additive inverse") {
-    val a = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5))
-    assert(-a == Vec3c(Complex(-1.0, -2.0), Complex(-1.5, -1.0), Complex(-0.5, -1.5)))
+    val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5))
+    assert(-vec == Vec3c(Complex(-1.0, -2.0), Complex(-1.5, -1.0), Complex(-0.5, -1.5)))
   }
 
   test("Subtraction of three values from a vector") {
@@ -35,22 +35,40 @@ class Vec3cSuite extends AnyFunSuite {
     assert(a - b == Vec3c(Complex(-1.0, -0.5), Complex(-1.5, 0.5), Complex(-0.5, 0.0)))
   }
 
-  test("Vector multiplied by a scalar") {
+  test("Vector multiplied by a real number") {
     val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5))
     val res = vec * 1.5
     assert(res == Vec3c(Complex(1.5, 3.0), Complex(2.25, 1.5), Complex(0.75, 2.25)))
   }
 
-  test("Vector multiplied by a scalar commutativity") {
+  test("Vector multiplied by a real number commutativity") {
     val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5))
     val res = 1.5 * vec
     assert(res == Vec3c(Complex(1.5, 3.0), Complex(2.25, 1.5), Complex(0.75, 2.25)))
   }
 
-  test("Vector divided by a scalar") {
+  test("Vector multiplied by a complex number") {
+    val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(1.0, 1.0))
+    val res = vec * Complex(1.5, 1.0)
+    assert(res == Vec3c(Complex(-0.5, 4.0), Complex(1.25, 3.0), Complex(0.5, 2.5)))
+  }
+
+  test("Vector multiplied by a complex number commutativity") {
+    val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(1.0, 1.0))
+    val res = Complex(1.5, 1.0) * vec
+    assert(res == Vec3c(Complex(-0.5, 4.0), Complex(1.25, 3.0), Complex(0.5, 2.5)))
+  }
+
+  test("Vector divided by a real number") {
     val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5))
     val res = vec / 2.0
     assert(res == Vec3c(Complex(0.5, 1.0), Complex(0.75, 0.5), Complex(0.25, 0.75)))
+  }
+
+  test("Vector divided by a complex number") {
+    val vec = Vec3c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5))
+    val res = vec / Complex(1.0, 1.0)
+    assert(res == Vec3c(Complex(3.0 / 2.0, 0.5), Complex(1.25, -0.25), Complex(1.0, 0.5)))
   }
 
   test("Component-wise multiplication of a vector and three values") {
@@ -101,9 +119,9 @@ class Vec3cSuite extends AnyFunSuite {
     assert(vec.conjugate == Vec3c(Complex(2.0, -4.0), Complex(8.0, -6.0), Complex(1.0, -2.0)))
   }
 
-  test("Reciprocal of a vector") {
+  test("Multiplicative inverse of a vector") {
     val vec = Vec3c(Complex(2.0, 4.0), Complex(8.0, 6.0), Complex(1.0, 2.0))
-    assert(vec.reciprocal == Vec3c(Complex(0.1, -0.2), Complex(0.08, -0.06), Complex(0.2, -0.4)))
+    assert(vec.inverse == Vec3c(Complex(0.1, -0.2), Complex(0.08, -0.06), Complex(0.2, -0.4)))
   }
 
   test("Component-wise division of two vectors") {
