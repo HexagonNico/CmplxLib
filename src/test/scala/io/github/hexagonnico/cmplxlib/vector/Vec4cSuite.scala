@@ -24,7 +24,7 @@ class Vec4cSuite extends AnyFunSuite {
   }
 
   test("Subtraction of four values from a vector") {
-    val vec = Vec4c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5),  Complex(3.0, 2.0))
+    val vec = Vec4c(Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(0.5, 1.5), Complex(3.0, 2.0))
     val res = vec - (Complex(2.0, 2.5), Complex(3.0, 0.5), Complex(1.0, 1.5), Complex(4.0, 3.5))
     assert(res == Vec4c(Complex(-1.0, -0.5), Complex(-1.5, 0.5), Complex(-0.5, 0.0), Complex(-1.0, -1.5)))
   }
