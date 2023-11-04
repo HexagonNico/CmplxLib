@@ -54,7 +54,7 @@ class Mat3cSuite extends AnyFunSuite {
     ))
   }
 
-  test("Matrix multiplied by a scalar") {
+  test("Matrix multiplied by a real number") {
     assert(Mat3c(
       Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(2.0, 1.0),
       Complex(0.5, 1.5), Complex(3.0, 2.0), Complex(1.0, 2.0),
@@ -66,7 +66,7 @@ class Mat3cSuite extends AnyFunSuite {
     ))
   }
 
-  test("Matrix multiplied by a scalar commutativity") {
+  test("Matrix multiplied by a real number commutativity") {
     assert(1.5 * Mat3c(
       Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(2.0, 1.0),
       Complex(0.5, 1.5), Complex(3.0, 2.0), Complex(1.0, 2.0),
@@ -75,6 +75,30 @@ class Mat3cSuite extends AnyFunSuite {
       Complex(1.5, 3.0), Complex(2.25, 1.5), Complex(3.0, 1.5),
       Complex(0.75, 2.25), Complex(4.5, 3.0), Complex(1.5, 3.0),
       Complex(3.0, 4.5), Complex(0.0, 1.5), Complex(2.25, 3.75)
+    ))
+  }
+
+  test("Matrix multiplied by a complex number") {
+    assert(Mat3c(
+      Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(2.0, 1.0),
+      Complex(0.5, 1.5), Complex(3.0, 2.0), Complex(1.0, 2.0),
+      Complex(2.0, 3.0), Complex(0.0, 1.0), Complex(1.5, 2.5)
+    ) * Complex(1.5, 1.0) == Mat3c(
+      Complex(-0.5, 4.0), Complex(1.25, 3.0), Complex(2.0, 3.5),
+      Complex(-0.75, 2.75), Complex(2.5, 6.0), Complex(-0.5, 4.0),
+      Complex(0.0, 6.5), Complex(-1.0, 1.5), Complex(-0.25, 5.25)
+    ))
+  }
+
+  test("Matrix multiplied by a complex number commutativity") {
+    assert(Complex(1.5, 1.0) * Mat3c(
+      Complex(1.0, 2.0), Complex(1.5, 1.0), Complex(2.0, 1.0),
+      Complex(0.5, 1.5), Complex(3.0, 2.0), Complex(1.0, 2.0),
+      Complex(2.0, 3.0), Complex(0.0, 1.0), Complex(1.5, 2.5)
+    ) == Mat3c(
+      Complex(-0.5, 4.0), Complex(1.25, 3.0), Complex(2.0, 3.5),
+      Complex(-0.75, 2.75), Complex(2.5, 6.0), Complex(-0.5, 4.0),
+      Complex(0.0, 6.5), Complex(-1.0, 1.5), Complex(-0.25, 5.25)
     ))
   }
 
