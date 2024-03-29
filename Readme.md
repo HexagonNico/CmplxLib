@@ -84,14 +84,14 @@ operations are called, it can be used safely in a multithreaded application.
 ### sbt
 
 ```
-libraryDependencies += "io.github.hexagonnico" % "cmplxlib" % "1.0"
+libraryDependencies += "io.github.scalamath" % "cmplxlib" % "1.0"
 ```
 
 ### Maven
 
 ```
 <dependency>
-    <groupId>io.github.hexagonnico</groupId>
+    <groupId>io.github.scalamath</groupId>
     <artifactId>cmplxlib</artifactId>
     <version>1.0</version>
 </dependency>
@@ -100,7 +100,7 @@ libraryDependencies += "io.github.hexagonnico" % "cmplxlib" % "1.0"
 ### Gradle
 
 ```
-implementation 'io.github.hexagonnico:cmplxlib:1.0'
+implementation 'io.github.scalamath:cmplxlib:1.0'
 ```
 
 ## Contributing

@@ -1,4 +1,4 @@
-package io.github.hexagonnico.cmplxlib
+package io.github.scalamath.cmplxlib
 
 import org.scalactic.Tolerance.convertNumericToPlusOrMinusWrapper
 import org.scalatest.funsuite.AnyFunSuite
@@ -95,7 +95,7 @@ class ComplexSuite extends AnyFunSuite {
 
   test("Modulus of a complex number") {
     val z = Complex(1.0, 1.0)
-    assert(z.abs == math.sqrt(2.0))
+    assert(z.modulus == math.sqrt(2.0))
   }
 
   test("Multiplicative inverse of a complex number") {

@@ -1,4 +1,4 @@
-package io.github.hexagonnico.cmplxlib;
+package io.github.scalamath.cmplxlib;
 
 import org.junit.Assert;
 import org.junit.Test;
