@@ -410,12 +410,28 @@ object Complex {
 
   /** Shorthand for `Complex(1.0, 0.0)` */
   val One: Complex = Complex(1.0, 0.0)
-
   /** Shorthand for the imaginary unit `Complex(0.0, 1.0)` */
   val I: Complex = Complex(0.0, 1.0)
-
   /** Shorthand for `Complex(0.0, 0.0)` */
   val Zero: Complex = Complex(0.0, 0.0)
+
+  /**
+   * Converts a complex number from the polar form to the cartesian form.
+   *
+   * @param r The modulus of the complex number.
+   * @param arg The argument of the complex number.
+   * @return A complex number in the cartesian form from the given modulus and argument.
+   */
+  def fromPolar(r: Double, arg: Double): Complex = Complex(r * math.cos(arg), r * math.sin(arg))
+
+  /**
+   * Returns the modulus of the complex number with the given real and imaginary parts.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The modulus of the complex number with the given real and imaginary parts.
+   */
+  def abs(a: Double, b: Double): Double = math.sqrt(a * a + b * b)
 
   /**
    * Returns the absolute value, or modulus, of the given complex number.
@@ -425,63 +441,140 @@ object Complex {
   def abs(z: Complex): Double = z.modulus
 
   /**
+   * Returns the principal square root of the complex number with the given real and imaginary parts.
+   *
+   * If the given real part is negative and the given imaginary part is zero, the result will be `I * sqrt(-a)`.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The principal square root of the complex number with the given real and imaginary parts.
+   */
+  def sqrt(a: Double, b: Double): Complex = {
+    if(a < 0.0 && (b ~= 0.0)) {
+      Complex(0.0, math.sqrt(-a))
+    } else {
+      val r = abs(a, b)
+      val zr = Complex(a + r, b)
+      (zr / zr.modulus) * math.sqrt(r)
+    }
+  }
+
+  /**
+   * Returns the principal square root of the given complex number.
+   *
+   * If the given number is a negative real number, the result will be `I * sqrt(-z)`.
+   *
+   * @param z The number to take the square root of.
+   * @return The principal square root of the given complex number.
+   */
+  def sqrt(z: Complex): Complex = sqrt(z.a, z.b)
+
+  /**
+   * Returns the exponential of the complex number with the given real and imaginary parts, or Euler's number raised to the power of the given number.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The exponential of the complex number with the given real and imaginary parts.
+   */
+  def exp(a: Double, b: Double): Complex = Complex(math.cos(b), math.sin(b)) * math.exp(a)
+
+  /**
    * Returns the exponential of the given complex number, or Euler's number raised to the power of the given number.
    *
    * @param z The exponent to raise e to.
    * @return The exponential of the given complex number.
    */
-  def exp(z: Complex): Complex = Complex(math.cos(z.b), math.sin(z.b)) * math.exp(z.a)
+  def exp(z: Complex): Complex = exp(z.a, z.b)
+
+  /**
+   * Returns the natural logarithm of the complex number with the given real and imaginary parts.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The natural logarithm of the complex number with the given real and imaginary parts.
+   */
+  def log(a: Double, b: Double): Complex = Complex(math.log(math.sqrt(a * a + b * b)), math.atan2(b, a))
+
+  /**
+   * Returns the natural logarithm of the given complex number.
+   *
+   * @param z The number to take the natural logarithm of.
+   * @return The natural logarithm of the given complex number.
+   */
+  def log(z: Complex): Complex = Complex(math.log(z.modulus), z.arg)
+
+  /**
+   * Returns the first value raised to the power of the second one.
+   *
+   * @param x The base.
+   * @param z The exponent.
+   * @return The value `x^z`.
+   */
+  def pow(x: Double, z: Complex): Complex = exp(z * math.log(x))
+
+  /**
+   * Returns the first value raised to the power of the second one.
+   *
+   * @param x The base.
+   * @param z The exponent.
+   * @return The value `x^z`.
+   */
+  def pow(x: Complex, z: Complex): Complex = exp(z * Complex(math.log(x.modulus), x.arg))
+
+  /**
+   * Returns the sine of the complex number with the given real and imaginary parts.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The sine of the complex number with the given real and imaginary parts.
+   */
+  def sin(a: Double, b: Double): Complex = Complex(math.sin(a) * math.cosh(b), math.cos(a) * math.sinh(b))
 
   /**
    * Returns the sine of the given complex number.
    *
-   * @param z The argument of the sin function.math.exp(z.a)
+   * @param z The number to take the sine of.
    * @return The sine of the given complex number.
    */
-  def sin(z: Complex): Complex = 0.5 * I * (exp(-I * z) - exp(I * z))
+  def sin(z: Complex): Complex = sin(z.a, z.b)
+
+  /**
+   * Returns the cosine of the complex number with the given real and imaginary parts.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The cosine of the complex number with the given real and imaginary parts.
+   */
+  def cos(a: Double, b: Double): Complex = Complex(math.cos(a) * math.cosh(b), -math.sin(a) * math.sinh(b))
 
   /**
    * Returns the cosine of the given complex number.
    *
-   * @param z The argument of the cos function.
+   * @param z The number to take the cosine of.
    * @return The cosine of the given complex number.
    */
-  def cos(z: Complex): Complex = 0.5 * (exp(I * z) + exp(-I * z))
+  def cos(z: Complex): Complex = cos(z.a, z.b)
 
   /**
-   * Returns the principal square root of the given complex number.
-   * 
-   * @param z The number to take the square root of.
-   * @return The principal square root of the given complex number.
+   * Returns the tangent of the complex number with the given real and imaginary parts.
+   *
+   * @param a The real part of the complex number.
+   * @param b The imaginary part of the complex number.
+   * @return The tangent of the complex number with the given real and imaginary parts.
    */
-  def sqrt(z: Complex): Complex = {
-    val abs = z.modulus
-    Complex(math.sqrt((abs + z.a) / 2.0), z.b.sign * math.sqrt((abs - z.a) / 2.0))
+  def tan(a: Double, b: Double): Complex = {
+    val tanA = math.tan(a)
+    val tanH = math.tanh(b)
+    Complex(tanA, tanH) / (1.0, -tanA * tanH)
   }
 
   /**
-   * Returns the natural logarithm of the given complex number.
-   * 
-   * @param z The number to take the natural logarithm of.
-   * @return The natural logarithm of the given complex number.
-   */
-  def log(z: Complex): Complex = math.log(z.modulus) + I * z.arg
-
-  /**
-   * Returns the inverse sine of the given complex number.
+   * Returns the tangent of the given complex number.
    *
-   * @param z The argument of the asin function.
-   * @return The inverse sine of the given complex number.
+   * @param z The number to take the tangent of.
+   * @return The tangent of the given complex number.
    */
-  def asin(z: Complex): Complex = -I * log(I * z + sqrt(1.0 - z * z))
-
-  /**
-   * Returns the inverse cosine of the given complex number.
-   *
-   * @param z The argument of the acos function.
-   * @return The inverse cosine of the given complex number.
-   */
-  def acos(z: Complex): Complex = 0.5 * math.Pi + I * log(I * z + sqrt(1.0 - z * z))
+  def tan(z: Complex): Complex = tan(z.a, z.b)
 
   /**
    * Allows to use commutative operators between complex and real numbers.
@@ -520,8 +613,11 @@ object Complex {
      * @param z The complex number by which this one is divided
      * @return The result of the division of this real number by the given complex number
      */
-    def /(z: Complex): Complex = r * z.inverse
+    def /(z: Complex): Complex = z.inverse * r
   }
 
+  /**
+   * Implicit conversion from [[Double]] to [[Complex]].
+   */
   implicit val realToComplex: Double => Complex = r => Complex(r, 0.0)
 }

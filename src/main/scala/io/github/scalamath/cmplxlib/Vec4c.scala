@@ -319,6 +319,14 @@ case class Vec4c(x: Complex, y: Complex, z: Complex, w: Complex) {
   def inverse: Vec4c = Vec4c(this.x.inverse, this.y.inverse, this.z.inverse, this.w.inverse)
 
   /**
+   * Returns the conjugate of this complex vector.
+   *
+   * @return The conjugate of this complex vector.
+   * @see [[Complex.conjugate]]
+   */
+  def conjugate: Vec4c = Vec4c(this.x.conjugate, this.y.conjugate, this.z.conjugate, this.w.conjugate)
+
+  /**
    * Returns the dot product, or scalar product, between this vector and the given values.
    *
    * @param x The x component of the vector to multiply this one by.

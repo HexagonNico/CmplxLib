@@ -1,21 +1,24 @@
-package io.github.scalamath.cmplxlib.vector
+package io.github.scalamath.cmplxlib
 
+import io.github.scalamath.cmplxlib.Complex.I
 import org.scalatest.funsuite.AnyFunSuite
 
 class Vec2cSuite extends AnyFunSuite {
 
-//  test("Sum of a vector and two values") {
-//    val vec = Vec2c(Complex(1.0, 2.0), Complex(1.5, 1.0))
-//    val res = vec + (Complex(2.0, 2.5), Complex(3.0, 0.5))
-//    assert(res == Vec2c(Complex(3.0, 4.5), Complex(4.5, 1.5)))
-//  }
-//
-//  test("Sum of two vectors") {
-//    val a = Vec2c(Complex(1.0, 2.0), Complex(1.5, 1.0))
-//    val b = Vec2c(Complex(2.0, 2.5), Complex(3.0, 0.5))
-//    assert(a + b == Vec2c(Complex(3.0, 4.5), Complex(4.5, 1.5)))
-//  }
-//
+  test("Sum of a vector and two values") {
+    val a = Vec2c(1.0 + 2.0 * I, 1.5 + I)
+    val b = a + (2.0 + 2.5 * I, 3.0 + 0.5 * I)
+    val res = Vec2c(3.0 + 4.5 * I, 4.5 + 1.5 * I)
+    assert(b == res)
+  }
+
+  test("Sum of two vectors") {
+    val a = Vec2c(1.0 + 2.0 * I, 1.5 + I)
+    val b = Vec2c(2.0 + 2.5 * I, 3.0 + 0.5 * I)
+    val res = Vec2c(3.0 + 4.5 * I, 4.5 + 1.5 * I)
+    assert(a + b == res)
+  }
+
 //  test("Additive inverse") {
 //    val vec = Vec2c(Complex(1.0, 2.0), Complex(1.5, 1.0))
 //    assert(-vec == Vec2c(Complex(-1.0, -2.0), Complex(-1.5, -1.0)))

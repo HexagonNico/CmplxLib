@@ -439,28 +439,6 @@ case class Vec3c(x: Complex, y: Complex, z: Complex) {
   def lerp(to: Vec3c, weight: Double): Vec3c = this + (to - this) * weight
 
   /**
-   * Computes the spherical linear interpolation between this vector and the given one by the given weight and returns the result.
-   *
-   * The given weight must be in the `[0.0, 1.0]` range, representing the amount of interpolation.
-   *
-   * This method behaves like [[lerp]] if this vector or the given one are approximately zero.
-   *
-   * @param to The second vector.
-   * @param weight The weight of the interpolation between `0.0` and `1.0`.
-   * @return The result of the spherical linear interpolation between this vector and the given one by the given weight.
-   */
-  def slerp(to: Vec3c, weight: Double): Vec3c = {
-    if((this.lengthSquared ~= 0.0) || (to.lengthSquared ~= 0.0)) {
-      this.lerp(to, weight)
-    } else {
-      val omega = Complex.acos(this.dot(to))
-      val sinOmega = Complex.sin(omega)
-      // TODO: Check in other libraray
-      this * (Complex.sin((1.0 - weight) * omega) / sinOmega) + to * (Complex.sin(weight * omega) / sinOmega)
-    }
-  }
-
-  /**
    * Computes the normalized vector pointing from this one to the given one and returns the result.
    *
    * This method is equivalent to `(b - a).normalized`.
