@@ -484,7 +484,7 @@ case class Vec2c(x: Complex, y: Complex) {
    * @param y The y component of the second vector.
    * @return The angle in radians between this vector and the one with the given components.
    */
-  def angleTo(x: Double, y: Double): Double = this.angleTo(Vec2d(x, y))
+  def angleTo(x: Complex, y: Complex): Double = this.angleTo(Vec2c(x, y))
 
   /**
    * Projects this vector on the given one and returns the result.
@@ -573,37 +573,37 @@ case class Vec2c(x: Complex, y: Complex) {
     Vec2c(this.x * cos - this.y * sin, this.x * sin + this.y * cos)
   }
 
-//  /**
-//   * Returns the cross product, or vector product, between this vector and the vector defined by the given components.
-//   *
-//   * Since the cross product is only defined in three dimensions, this vector is considered to be laying on the xy plane, i.e. its z component is considered to be zero.
-//   *
-//   * @param x The x component of the second vector.
-//   * @param y The y component of the second vector.
-//   * @param z The z component of the second vector.
-//   * @return The cross product between this vector and the vector defined by the given components.
-//   */
-//  def cross(x: Double, y: Double, z: Double): Vec3c = Vec3c(this.y * z, z * this.x, this.x * y - this.y * x)
-//
-//  /**
-//   * Returns the cross product, or vector product, between this vector and the given one.
-//   *
-//   * Since the cross product is only defined in three dimensions, this vector is considered to be laying on the xy plane, i.e. its z component is considered to be zero.
-//   *
-//   * @param v The second vector.
-//   * @return The cross product between this vector and the given one.
-//   */
-//  def cross(v: Vec3c): Vec3c = this.cross(v.x, v.y, v.z)
-//
-//  /**
-//   * Returns the cross product, or vector product, between this vector and the given one.
-//   *
-//   * Since the cross product is only defined in three dimensions, the two vectors are considered to be laying on the xy plane, i.e. their z component is considered to be zero.
-//   *
-//   * @param v The second vector.
-//   * @return The cross product between this vector and the given one.
-//   */
-//  def cross(v: Vec2c): Vec3c = this.cross(v.x, v.y, 0.0)
+  /**
+   * Returns the cross product, or vector product, between this vector and the vector defined by the given components.
+   *
+   * Since the cross product is only defined in three dimensions, this vector is considered to be laying on the xy plane, i.e. its z component is considered to be zero.
+   *
+   * @param x The x component of the second vector.
+   * @param y The y component of the second vector.
+   * @param z The z component of the second vector.
+   * @return The cross product between this vector and the vector defined by the given components.
+   */
+  def cross(x: Complex, y: Complex, z: Complex): Vec3c = Vec3c(this.y * z, z * this.x, this.x * y - this.y * x)
+
+  /**
+   * Returns the cross product, or vector product, between this vector and the given one.
+   *
+   * Since the cross product is only defined in three dimensions, this vector is considered to be laying on the xy plane, i.e. its z component is considered to be zero.
+   *
+   * @param v The second vector.
+   * @return The cross product between this vector and the given one.
+   */
+  def cross(v: Vec3c): Vec3c = this.cross(v.x, v.y, v.z)
+
+  /**
+   * Returns the cross product, or vector product, between this vector and the given one.
+   *
+   * Since the cross product is only defined in three dimensions, the two vectors are considered to be laying on the xy plane, i.e. their z component is considered to be zero.
+   *
+   * @param v The second vector.
+   * @return The cross product between this vector and the given one.
+   */
+  def cross(v: Vec2c): Vec3c = this.cross(v.x, v.y, 0.0)
 
 //  /**
 //   * Returns the outer product between this vector and the given values.
@@ -616,7 +616,7 @@ case class Vec2c(x: Complex, y: Complex) {
 //    this.x * x, this.x * y,
 //    this.y * x, this.y * y
 //  )
-
+//
 //  /**
 //   * Returns the outer product between this vector and the given one.
 //   *
@@ -624,7 +624,7 @@ case class Vec2c(x: Complex, y: Complex) {
 //   * @return The outer product between this vector and the given one.
 //   */
 //  def outer(v: Vec2c): Mat2c = this.outer(v.x, v.y)
-
+//
 //  /**
 //   * Returns the outer product between this vector and the given values.
 //   *
