@@ -18,6 +18,32 @@ class Vec4cSuite extends AnyFunSuite {
     case _ => false
   }
 
+  test("Construct from Vec3c and w") {
+    val a = Vec3c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I)
+    val b = Vec4c(a, 4.0 * I)
+    val res = Vec4c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I, 4.0 * I)
+    assert(b == res)
+  }
+
+  test("Construct from Vec2c, z, and w") {
+    val a = Vec2c(1.0 + I, 2.0 + 3.0 * I)
+    val b = Vec4c(a, 3.0 + 2.0 * I, 4.0 * I)
+    val res = Vec4c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I, 4.0 * I)
+    assert(b == res)
+  }
+
+  test("Access xyz components") {
+    val a = Vec4c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I, 4.0 * I)
+    val b = Vec3c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I)
+    assert(a.xyz == b)
+  }
+
+  test("Access xy components") {
+    val a = Vec4c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I, 4.0 * I)
+    val b = Vec2c(1.0 + I, 2.0 + 3.0 * I)
+    assert(a.xy == b)
+  }
+
   test("Sum of a vector and four values") {
     val a = Vec4c(1.0 + 2.0 * I, 1.5 + I, 0.5 + 1.5 * I, 3.0 + 2.0 * I)
     val b = a + (2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 1.5 * I, 4.0 + 3.5 * I)

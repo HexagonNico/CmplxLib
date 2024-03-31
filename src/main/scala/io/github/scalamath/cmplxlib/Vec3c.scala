@@ -596,50 +596,50 @@ case class Vec3c(x: Complex, y: Complex, z: Complex) {
    */
   def slide(x: Complex, y: Complex, z: Complex): Vec3c = this.slide(Vec3c(x, y, z))
 
-//  /**
-//   * Returns the outer product between this vector and the given values.
-//   *
-//   * @param x The x component of the second vector.
-//   * @param y The y component of the second vector.
-//   * @param z The z component of the second vector.
-//   * @return The outer product between this vector and the given values.
-//   */
-//  def outer(x: Complex, y: Complex, z: Complex): Mat3c = Mat3c(
-//    this.x * x, this.x * y, this.x * z,
-//    this.y * x, this.y * y, this.y * z,
-//    this.z * x, this.z * y, this.z * z
-//  )
-//
-//  /**
-//   * Returns the outer product between this vector and the given one.
-//   *
-//   * @param v The second vector.
-//   * @return The outer product between this vector and the given one.
-//   */
-//  def outer(v: Vec3c): Mat3c = this.outer(v.x, v.y, v.z)
-//
-//  /**
-//   * Returns the outer product between this vector and the given values.
-//   *
-//   * @param x The x component of the second vector.
-//   * @param y The y component of the second vector.
-//   * @param z The z component of the second vector.
-//   * @param w The w component of the second vector.
-//   * @return The outer product between this vector and the given values.
-//   */
-//  def outer(x: Complex, y: Complex, z: Complex, w: Complex): Mat3x4c = Mat3x4c(
-//    this.x * x, this.x * y, this.x * z, this.x * w,
-//    this.y * x, this.y * y, this.y * z, this.y * w,
-//    this.z * x, this.z * y, this.z * z, this.z * w
-//  )
-//
-//  /**
-//   * Returns the outer product between this vector and the given one.
-//   *
-//   * @param v The second vector.
-//   * @return The outer product between this vector and the given one.
-//   */
-//  def outer(v: Vec4c): Mat3x4c = this.outer(v.x, v.y, v.z, v.w)
+  /**
+   * Returns the outer product between this vector and the given values.
+   *
+   * @param x The x component of the second vector.
+   * @param y The y component of the second vector.
+   * @param z The z component of the second vector.
+   * @return The outer product between this vector and the given values.
+   */
+  def outer(x: Complex, y: Complex, z: Complex): Mat3c = Mat3c(
+    this.x * x, this.x * y, this.x * z,
+    this.y * x, this.y * y, this.y * z,
+    this.z * x, this.z * y, this.z * z
+  )
+
+  /**
+   * Returns the outer product between this vector and the given one.
+   *
+   * @param v The second vector.
+   * @return The outer product between this vector and the given one.
+   */
+  def outer(v: Vec3c): Mat3c = this.outer(v.x, v.y, v.z)
+
+  /**
+   * Returns the outer product between this vector and the given values.
+   *
+   * @param x The x component of the second vector.
+   * @param y The y component of the second vector.
+   * @param z The z component of the second vector.
+   * @param w The w component of the second vector.
+   * @return The outer product between this vector and the given values.
+   */
+  def outer(x: Complex, y: Complex, z: Complex, w: Complex): Mat3x4c = Mat3x4c(
+    this.x * x, this.x * y, this.x * z, this.x * w,
+    this.y * x, this.y * y, this.y * z, this.y * w,
+    this.z * x, this.z * y, this.z * z, this.z * w
+  )
+
+  /**
+   * Returns the outer product between this vector and the given one.
+   *
+   * @param v The second vector.
+   * @return The outer product between this vector and the given one.
+   */
+  def outer(v: Vec4c): Mat3x4c = this.outer(v.x, v.y, v.z, v.w)
 
   /**
    * Checks if the components of this vector are equal to the given ones.

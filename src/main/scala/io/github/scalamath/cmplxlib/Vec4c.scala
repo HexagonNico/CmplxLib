@@ -602,29 +602,29 @@ case class Vec4c(x: Complex, y: Complex, z: Complex, w: Complex) {
    */
   def slide(x: Complex, y: Complex, z: Complex, w: Complex): Vec4c = this.slide(Vec4c(x, y, z, w))
 
-//  /**
-//   * Returns the outer product between this vector and the given values.
-//   *
-//   * @param x The x component of the second vector.
-//   * @param y The y component of the second vector.
-//   * @param z The z component of the second vector.
-//   * @param w The w component of the second vector.
-//   * @return The outer product between this vector and the given values.
-//   */
-//  def outer(x: Complex, y: Complex, z: Complex, w: Complex): Mat4c = Mat4c(
-//    this.x * x, this.x * y, this.x * z, this.x * w,
-//    this.y * x, this.y * y, this.y * z, this.y * w,
-//    this.z * x, this.z * y, this.z * z, this.z * w,
-//    this.w * x, this.w * y, this.w * z, this.w * w
-//  )
-//
-//  /**
-//   * Returns the outer product between this vector and the given one.
-//   *
-//   * @param v The second vector.
-//   * @return The outer product between this vector and the given one.
-//   */
-//  def outer(v: Vec4c): Mat4c = this.outer(v.x, v.y, v.z, v.w)
+  /**
+   * Returns the outer product between this vector and the given values.
+   *
+   * @param x The x component of the second vector.
+   * @param y The y component of the second vector.
+   * @param z The z component of the second vector.
+   * @param w The w component of the second vector.
+   * @return The outer product between this vector and the given values.
+   */
+  def outer(x: Complex, y: Complex, z: Complex, w: Complex): Mat4c = Mat4c(
+    this.x * x, this.x * y, this.x * z, this.x * w,
+    this.y * x, this.y * y, this.y * z, this.y * w,
+    this.z * x, this.z * y, this.z * z, this.z * w,
+    this.w * x, this.w * y, this.w * z, this.w * w
+  )
+
+  /**
+   * Returns the outer product between this vector and the given one.
+   *
+   * @param v The second vector.
+   * @return The outer product between this vector and the given one.
+   */
+  def outer(v: Vec4c): Mat4c = this.outer(v.x, v.y, v.z, v.w)
 
   /**
    * Checks if the components of this vector are equal to the given ones.

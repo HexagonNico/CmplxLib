@@ -1,4 +1,4 @@
-package io.github.scalamath.cmplxlib.matrix
+package io.github.scalamath.cmplxlib
 
 import org.scalatest.funsuite.AnyFunSuite
 

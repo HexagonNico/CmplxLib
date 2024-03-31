@@ -21,8 +21,8 @@ class Vec3cSuite extends AnyFunSuite {
   test("Construct from Vec2c and z") {
     val a = Vec2c(1.0 + I, 2.0 + 3.0 * I)
     val b = Vec3c(a, 3.0 + 2.0 * I)
-    val exp = Vec3c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I)
-    assert(b == exp)
+    val res = Vec3c(1.0 + I, 2.0 + 3.0 * I, 3.0 + 2.0 * I)
+    assert(b == res)
   }
 
   test("Access xy components") {
