@@ -260,24 +260,6 @@ case class Mat3c(
   }
 
   /**
-   * Multiplies this matrix by the given vector and returns the result.
-   *
-   * @param v The vector to multiply this matrix by.
-   * @return The product of this matrix by the given vector.
-   */
-  def *(v: Vec3c): Vec3c = Vec3c(this.row0.dot(v), this.row1.dot(v), this.row2.dot(v))
-
-  /**
-   * Multiplies this matrix by the given vector and returns the result.
-   *
-   * This method can be used in place of the `*` operator for better interoperability with Java.
-   *
-   * @param v The vector to multiply this matrix by.
-   * @return The product of this matrix by the given vector.
-   */
-  def multiply(v: Vec3c): Vec3c = this * v
-
-  /**
    * Multiplies this matrix by the vector with the given components and returns the result.
    *
    * @param x The vector's x component.
@@ -285,7 +267,11 @@ case class Mat3c(
    * @param z The vector's z component.
    * @return The product of this matrix by the vector with the given components.
    */
-  def *(x: Complex, y: Complex, z: Complex): Vec3c = this * Vec3c(x, y, z)
+  def *(x: Complex, y: Complex, z: Complex): Vec3c = Vec3c(
+    this.m00 * x + this.m01 * y + this.m02 * z,
+    this.m10 * x + this.m11 * y + this.m12 * z,
+    this.m20 * x + this.m21 * y + this.m22 * z
+  )
 
   /**
    * Multiplies this matrix by the vector with the given components and returns the result.
@@ -298,6 +284,24 @@ case class Mat3c(
    * @return The product of this matrix by the vector with the given components.
    */
   def multiply(x: Complex, y: Complex, z: Complex): Vec3c = this * (x, y, z)
+
+  /**
+   * Multiplies this matrix by the given vector and returns the result.
+   *
+   * @param v The vector to multiply this matrix by.
+   * @return The product of this matrix by the given vector.
+   */
+  def *(v: Vec3c): Vec3c = this * (v.x, v.y, v.z)
+
+  /**
+   * Multiplies this matrix by the given vector and returns the result.
+   *
+   * This method can be used in place of the `*` operator for better interoperability with Java.
+   *
+   * @param v The vector to multiply this matrix by.
+   * @return The product of this matrix by the given vector.
+   */
+  def multiply(v: Vec3c): Vec3c = this * v
 
   /**
    * Multiplies this matrix by the vector with the given components and returns the result.
@@ -330,9 +334,9 @@ case class Mat3c(
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat3c): Mat3c = Mat3c(
-    this.row0.dot(m.col0), this.row0.dot(m.col1), this.row0.dot(m.col2),
-    this.row1.dot(m.col0), this.row1.dot(m.col1), this.row1.dot(m.col2),
-    this.row2.dot(m.col0), this.row2.dot(m.col1), this.row2.dot(m.col2)
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20, this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21, this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20, this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21, this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22,
+    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20, this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21, this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22
   )
 
   /**
@@ -352,9 +356,9 @@ case class Mat3c(
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat3x4c): Mat3x4c = Mat3x4c(
-    this.row0.dot(m.col0), this.row0.dot(m.col1), this.row0.dot(m.col2), this.row0.dot(m.col3),
-    this.row1.dot(m.col0), this.row1.dot(m.col1), this.row1.dot(m.col2), this.row1.dot(m.col3),
-    this.row2.dot(m.col0), this.row2.dot(m.col1), this.row2.dot(m.col2), this.row2.dot(m.col3)
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20, this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21, this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22, this.m00 * m.m03 + this.m01 * m.m13 + this.m02 * m.m23,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20, this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21, this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22, this.m10 * m.m03 + this.m11 * m.m13 + this.m12 * m.m23,
+    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20, this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21, this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22, this.m20 * m.m03 + this.m21 * m.m13 + this.m22 * m.m23
   )
 
   /**

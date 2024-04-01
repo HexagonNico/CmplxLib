@@ -97,6 +97,16 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
   /**
    * Multiplies this matrix by the given scalar and returns the result.
    *
+   * This method can be used in place of the `*` operator for better interoperability with Java.
+   *
+   * @param k The scalar to multiply this matrix by.
+   * @return The product between this matrix and the given scalar.
+   */
+  def multipliedBy(k: Complex): Mat2c = this * k
+
+  /**
+   * Multiplies this matrix by the given scalar and returns the result.
+   *
    * @param k The scalar to multiply this matrix by.
    * @return The product between this matrix and the given scalar.
    */
@@ -104,16 +114,6 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
     this.m00 * k, this.m01 * k,
     this.m10 * k, this.m11 * k
   )
-
-  /**
-   * Multiplies this matrix by the given scalar and returns the result.
-   *
-   * This method can be used in place of the `*` operator for better interoperability with Java.
-   *
-   * @param k The scalar to multiply this matrix by.
-   * @return The product between this matrix and the given scalar.
-   */
-  def multipliedBy(k: Complex): Mat2c = this * k
 
   /**
    * Multiplies this matrix by the given scalar and returns the result.
@@ -139,6 +139,16 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
   /**
    * Divides this matrix by the given scalar and returns the result.
    *
+   * This method can be used in place of the `/` operator for better interoperability with Java.
+   *
+   * @param k The scalar to divide this matrix by.
+   * @return The division between this matrix and the given scalar.
+   */
+  def dividedBy(k: Complex): Mat2c = this / k
+
+  /**
+   * Divides this matrix by the given scalar and returns the result.
+   *
    * @param k The scalar to divide this matrix by.
    * @return The division between this matrix and the given scalar.
    */
@@ -146,16 +156,6 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
     this.m00 / k, this.m01 / k,
     this.m10 / k, this.m11 / k
   )
-
-  /**
-   * Divides this matrix by the given scalar and returns the result.
-   *
-   * This method can be used in place of the `/` operator for better interoperability with Java.
-   *
-   * @param k The scalar to divide this matrix by.
-   * @return The division between this matrix and the given scalar.
-   */
-  def dividedBy(k: Complex): Mat2c = this / k
 
   /**
    * Divides this matrix by the given scalar and returns the result.
@@ -226,31 +226,13 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
   }
 
   /**
-   * Multiplies this matrix by the given vector and returns the result.
-   *
-   * @param v The vector to multiply this matrix by.
-   * @return The product of this matrix by the given vector.
-   */
-  def *(v: Vec2c): Vec2c = Vec2c(this.row0.dot(v), this.row1.dot(v))
-
-  /**
-   * Multiplies this matrix by the given vector and returns the result.
-   *
-   * This method can be used in place of the `*` operator for better interoperability with Java.
-   *
-   * @param v The vector to multiply this matrix by.
-   * @return The product of this matrix by the given vector.
-   */
-  def multiply(v: Vec2c): Vec2c = this * v
-
-  /**
    * Multiplies this matrix by the vector with the given components and returns the result.
    *
    * @param x The vector's x component.
    * @param y The vector's y component.
    * @return The product of this matrix by the vector with the given components.
    */
-  def *(x: Complex, y: Complex): Vec2c = this * Vec2c(x, y)
+  def *(x: Complex, y: Complex): Vec2c = Vec2c(this.m00 * x + this.m01 * y, this.m10 * x + this.m11 * y)
 
   /**
    * Multiplies this matrix by the vector with the given components and returns the result.
@@ -264,14 +246,32 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
   def multiply(x: Complex, y: Complex): Vec2c = this * (x, y)
 
   /**
+   * Multiplies this matrix by the given vector and returns the result.
+   *
+   * @param v The vector to multiply this matrix by.
+   * @return The product of this matrix by the given vector.
+   */
+  def *(v: Vec2c): Vec2c = this * (v.x, v.y)
+
+  /**
+   * Multiplies this matrix by the given vector and returns the result.
+   *
+   * This method can be used in place of the `*` operator for better interoperability with Java.
+   *
+   * @param v The vector to multiply this matrix by.
+   * @return The product of this matrix by the given vector.
+   */
+  def multiply(v: Vec2c): Vec2c = this * v
+
+  /**
    * Multiplies this matrix by the given one and returns the result.
    *
    * @param m The matrix to multiply this one by.
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat2c): Mat2c = Mat2c(
-    this.row0.dot(m.col0), this.row0.dot(m.col1),
-    this.row1.dot(m.col0), this.row1.dot(m.col1)
+    this.m00 * m.m00 + this.m01 * m.m10, this.m00 * m.m01 + this.m01 * m.m11,
+    this.m10 * m.m00 + this.m11 * m.m10, this.m10 * m.m01 + this.m11 * m.m11
   )
 
   /**
@@ -291,8 +291,8 @@ case class Mat2c(m00: Complex, m01: Complex, m10: Complex, m11: Complex) {
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat2x3c): Mat2x3c = Mat2x3c(
-    this.row0.dot(m.col0), this.row0.dot(m.col1), this.row0.dot(m.col2),
-    this.row1.dot(m.col0), this.row1.dot(m.col1), this.row1.dot(m.col2)
+    this.m00 * m.m00 + this.m01 * m.m10, this.m00 * m.m01 + this.m01 * m.m11, this.m00 * m.m02 + this.m01 * m.m12,
+    this.m10 * m.m00 + this.m11 * m.m10, this.m10 * m.m01 + this.m11 * m.m11, this.m10 * m.m02 + this.m11 * m.m12
   )
 
   /**
