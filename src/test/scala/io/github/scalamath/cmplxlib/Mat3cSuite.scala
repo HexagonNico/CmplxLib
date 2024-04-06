@@ -26,7 +26,7 @@ class Mat3cSuite extends AnyFunSuite {
     val b = Mat3c(
       2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 2.0 * I,
       1.0 + 1.5 * I, 4.0 + 3.5 * I, 1.5 + 2.0 * I,
-      3.0 + 0.5 * I, 1.0 + I, 2.5 + 0.0 * I
+      3.0 + 0.5 * I, 1.0 + I, 2.5
     )
     val res = Mat3c(
       3.0 + 4.5 * I, 4.5 + 1.5 * I, 3.0 + 3.0 * I,
@@ -54,12 +54,12 @@ class Mat3cSuite extends AnyFunSuite {
     val b = Mat3c(
       2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 2.0 * I,
       1.0 + 1.5 * I, 4.0 + 3.5 * I, 1.5 + 2.0 * I,
-      3.0 + 0.5 * I, 1.0 + I, 2.5 + 0.0 * I
+      3.0 + 0.5 * I, 1.0 + I, 2.5
     )
     val res = Mat3c(
       -1.0 - 0.5 * I, -1.5 + 0.5 * I, 1.0 - I,
-      -0.5 + 0.0 * I, -1.0 - 1.5 * I, -0.5 + 0.0 * I,
-      -1.0 + 2.5 * I, -1.0 + 0.0 * I, -1.0 + 2.5 * I
+      -0.5, -1.0 - 1.5 * I, -0.5,
+      -1.0 + 2.5 * I, -1.0, -1.0 + 2.5 * I
     )
     assert(a - b === res)
   }
@@ -73,7 +73,7 @@ class Mat3cSuite extends AnyFunSuite {
     val res = Mat3c(
       -1.0 - 2.0 * I, -1.5 - I, -2.0 - I,
       -0.5 - 1.5 * I, -3.0 - 2.0 * I, -1.0 - 2.0 * I,
-      -2.0 - 3.0 * I, -0.0 - I, -1.5 - 2.5 * I
+      -2.0 - 3.0 * I, -I, -1.5 - 2.5 * I
     )
     assert(-mat == res)
   }
@@ -231,7 +231,7 @@ class Mat3cSuite extends AnyFunSuite {
     val b = Mat3c(
       2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 2.0 * I,
       1.0 + 1.5 * I, 4.0 + 3.5 * I, 1.5 + 2.0 * I,
-      3.0 + 0.5 * I, 1.0 + I, 2.5 + 0.0 * I
+      3.0 + 0.5 * I, 1.0 + I, 2.5
     )
     val res = Mat3c(
       2.5 + 13.75 * I, 5.5 + 18.75 * I, 2.25 + 11.0 * I,
@@ -259,7 +259,7 @@ class Mat3cSuite extends AnyFunSuite {
     assert(mat.transposed == res)
   }
 
-  test("Complex matrix") {
+  test("Conjugate matrix") {
     val mat = Mat3c(
       1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
       0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
@@ -268,7 +268,7 @@ class Mat3cSuite extends AnyFunSuite {
     val res = Mat3c(
       1.0 - 2.0 * I, 1.5 - I, 2.0 - I,
       0.5 - 1.5 * I, 3.0 - 2.0 * I, 1.0 - 2.0 * I,
-      2.0 - 3.0 * I, 0.0 - I, 1.5 - 2.5 * I
+      2.0 - 3.0 * I, -I, 1.5 - 2.5 * I
     )
     assert(mat.conjugate == res)
   }

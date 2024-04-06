@@ -124,14 +124,14 @@ class Vec4cSuite extends AnyFunSuite {
   }
 
   test("Component-wise division of two vectors") {
-    val a = Vec4c(8.0 + 6.0 * I, 6.0 + 8.0 * I, 1.0 + 2.0 * I, 2.0 + 0.0 * I)
+    val a = Vec4c(8.0 + 6.0 * I, 6.0 + 8.0 * I, 1.0 + 2.0 * I, 2.0)
     val b = Vec4c(2.0 + 2.0 * I, 4.0 + 2.0 * I, 2.0 + 4.0 * I, 2.0 + 2.0 * I)
     val res = Vec4c(3.5 - 0.5 * I, 2.0 + I, 0.5 + 0.0 * I, 0.5 - 0.5 * I)
     assert(a / b === res)
   }
 
   test("Component-wise division of a vector and four values") {
-    val a = Vec4c(8.0 + 6.0 * I, 6.0 + 8.0 * I, 1.0 + 2.0 * I, 2.0 + 0.0 * I)
+    val a = Vec4c(8.0 + 6.0 * I, 6.0 + 8.0 * I, 1.0 + 2.0 * I, 2.0)
     val b = a / (2.0 + 2.0 * I, 4.0 + 2.0 * I, 2.0 + 4.0 * I, 2.0 + 2.0 * I)
     val res = Vec4c(3.5 - 0.5 * I, 2.0 + I, 0.5 + 0.0 * I, 0.5 - 0.5 * I)
     assert(b === res)

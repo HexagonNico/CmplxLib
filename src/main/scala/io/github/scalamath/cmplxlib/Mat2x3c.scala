@@ -244,7 +244,10 @@ case class Mat2x3c(m00: Complex, m01: Complex, m02: Complex, m10: Complex, m11: 
    * @param z The vector's z component.
    * @return The product of this matrix by the vector with the given components.
    */
-  def *(x: Complex, y: Complex, z: Complex): Vec2c = Vec2c(this.m00 * x + this.m01 * y + this.m02 * z, this.m10 * x + this.m11 * y + this.m12 * z)
+  def *(x: Complex, y: Complex, z: Complex): Vec2c = Vec2c(
+    this.m00 * x + this.m01 * y + this.m02 * z,
+    this.m10 * x + this.m11 * y + this.m12 * z
+  )
 
   /**
    * Multiplies this matrix by the vector with the given components and returns the result.
@@ -307,8 +310,12 @@ case class Mat2x3c(m00: Complex, m01: Complex, m02: Complex, m10: Complex, m11: 
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat3c): Mat2x3c = Mat2x3c(
-    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20, this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21, this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
-    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20, this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21, this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20,
+    this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21,
+    this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20,
+    this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21,
+    this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22
   )
 
   /**

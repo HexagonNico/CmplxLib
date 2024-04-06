@@ -53,14 +53,14 @@ class Vec3cSuite extends AnyFunSuite {
   test("Subtraction of three values from a vector") {
     val a = Vec3c(1.0 + 2.0 * I, 1.5 + I, 0.5 + 1.5 * I)
     val b = a - (2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 1.5 * I)
-    val res = Vec3c(-1.0 - 0.5 * I, -1.5 + 0.5 * I, -0.5 + 0.0 * I)
+    val res = Vec3c(-1.0 - 0.5 * I, -1.5 + 0.5 * I, -0.5)
     assert(b === res)
   }
 
   test("Subtraction of two vectors") {
     val a = Vec3c(1.0 + 2.0 * I, 1.5 + I, 0.5 + 1.5 * I)
     val b = Vec3c(2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 1.5 * I)
-    val res = Vec3c(-1.0 - 0.5 * I, -1.5 + 0.5 * I, -0.5 + 0.0 * I)
+    val res = Vec3c(-1.0 - 0.5 * I, -1.5 + 0.5 * I, -0.5)
     assert(a - b === res)
   }
 
@@ -113,14 +113,14 @@ class Vec3cSuite extends AnyFunSuite {
   test("Component-wise division of two vectors") {
     val a = Vec3c(8.0 + 6.0 * I, 6.0 + 8.0 * I, 1.0 + 2.0 * I)
     val b = Vec3c(2.0 + 2.0 * I, 4.0 + 2.0 * I, 2.0 + 4.0 * I)
-    val res = Vec3c(3.5 - 0.5 * I, 2.0 + I, 0.5 + 0.0 * I)
+    val res = Vec3c(3.5 - 0.5 * I, 2.0 + I, 0.5)
     assert(a / b == res)
   }
 
   test("Component-wise division of a vector and three values") {
     val a = Vec3c(8.0 + 6.0 * I, 6.0 + 8.0 * I, 1.0 + 2.0 * I)
     val b = a / (2.0 + 2.0 * I, 4.0 + 2.0 * I, 2.0 + 4.0 * I)
-    val res = Vec3c(3.5 - 0.5 * I, 2.0 + I, 0.5 + 0.0 * I)
+    val res = Vec3c(3.5 - 0.5 * I, 2.0 + I, 0.5)
     assert(b === res)
   }
 

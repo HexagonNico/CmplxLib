@@ -334,9 +334,15 @@ case class Mat3c(
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat3c): Mat3c = Mat3c(
-    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20, this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21, this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
-    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20, this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21, this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22,
-    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20, this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21, this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20,
+    this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21,
+    this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20,
+    this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21,
+    this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22,
+    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20,
+    this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21,
+    this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22
   )
 
   /**
@@ -356,9 +362,18 @@ case class Mat3c(
    * @return The product between this matrix and the given one.
    */
   def *(m: Mat3x4c): Mat3x4c = Mat3x4c(
-    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20, this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21, this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22, this.m00 * m.m03 + this.m01 * m.m13 + this.m02 * m.m23,
-    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20, this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21, this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22, this.m10 * m.m03 + this.m11 * m.m13 + this.m12 * m.m23,
-    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20, this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21, this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22, this.m20 * m.m03 + this.m21 * m.m13 + this.m22 * m.m23
+    this.m00 * m.m00 + this.m01 * m.m10 + this.m02 * m.m20,
+    this.m00 * m.m01 + this.m01 * m.m11 + this.m02 * m.m21,
+    this.m00 * m.m02 + this.m01 * m.m12 + this.m02 * m.m22,
+    this.m00 * m.m03 + this.m01 * m.m13 + this.m02 * m.m23,
+    this.m10 * m.m00 + this.m11 * m.m10 + this.m12 * m.m20,
+    this.m10 * m.m01 + this.m11 * m.m11 + this.m12 * m.m21,
+    this.m10 * m.m02 + this.m11 * m.m12 + this.m12 * m.m22,
+    this.m10 * m.m03 + this.m11 * m.m13 + this.m12 * m.m23,
+    this.m20 * m.m00 + this.m21 * m.m10 + this.m22 * m.m20,
+    this.m20 * m.m01 + this.m21 * m.m11 + this.m22 * m.m21,
+    this.m20 * m.m02 + this.m21 * m.m12 + this.m22 * m.m22,
+    this.m20 * m.m03 + this.m21 * m.m13 + this.m22 * m.m23
   )
 
   /**

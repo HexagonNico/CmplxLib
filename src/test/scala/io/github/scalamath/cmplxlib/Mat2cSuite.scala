@@ -281,7 +281,7 @@ class Mat2cSuite extends AnyFunSuite {
       1.0 + 2.0 * I, 1.5 + I,
       0.5 + 1.5 * I, 3.0 + 2.0 * I
     )
-    assert(a.power(3) === (a * a * a))
+    assert(a.power(3) === a * a * a)
   }
 
   ignore("Matrix absolute value") {
