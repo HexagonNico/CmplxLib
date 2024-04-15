@@ -151,12 +151,37 @@ class Mat4cSuite extends AnyFunSuite {
     assert(1.5 * mat === res)
   }
 
-  ignore("Matrix divided by a complex number") {
-    // TODO
+  test("Matrix divided by a complex number") {
+    val mat = Mat4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0,
+      3.0 + I, 2.0 + 3.0 * I, 2.5 + 1.5 * I, 2.0 * I
+    )
+    val z = 1.5 + I
+    val res = Mat4c(
+      3.5 / 3.25 + 2.0 / 3.25 * I, 1.0, 4.0 / 3.25 - 0.5 / 3.25 * I, 4.5 / 3.25 - 3.0 / 3.25 * I,
+      2.25 / 3.25 + 1.75 / 3.25 * I, 6.5 / 3.25, 3.5 / 3.25 + 2.0 / 3.25 * I, 4.0 / 3.25 - 0.5 / 3.25 * I,
+      6.0 / 3.25 + 2.5 / 3.25 * I, 1.0 / 3.25 + 1.5 / 3.25 * I, 4.75 / 3.25 + 2.25 / 3.25 * I, 1.5 / 3.25 - 1.0 / 3.25 * I,
+      5.5 / 3.25 - 1.5 / 3.25 * I, 6.0 / 3.25 + 2.5 / 3.25 * I, 5.25 / 3.25 - 0.25 / 3.25 * I, 2.0 / 3.25 + 3.0 / 3.25 * I
+    )
+    assert(mat / z === res)
   }
 
-  ignore("Matrix divided by a real number") {
-    // TODO
+  test("Matrix divided by a real number") {
+    val mat = Mat4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0,
+      3.0 + I, 2.0 + 3.0 * I, 2.5 + 1.5 * I, 2.0 * I
+    )
+    val res = Mat4c(
+      0.5 + I, 0.75 + 0.5 * I, 1.0 + 0.5 * I, 1.5,
+      0.25 + 0.75 * I, 1.5 + I, 0.5 + I, 1.0 + 0.5 * I,
+      1.0 + 1.5 * I, 0.5 * I, 0.75 + 1.25 * I, 0.5,
+      1.5 + 0.5 * I, 1.0 + 1.5 * I, 1.25 + 0.75 * I, I
+    )
+    assert(mat / 2.0 === res)
   }
 
   test("Access the rows of a matrix") {
@@ -348,8 +373,20 @@ class Mat4cSuite extends AnyFunSuite {
     assert(mat.determinant == det)
   }
 
-  ignore("Adjugate matrix") {
-    // TODO
+  test("Adjugate matrix") {
+    val mat = Mat4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0,
+      3.0 + I, 2.0 + 3.0 * I, 2.5 + 1.5 * I, 2.0 * I
+    )
+    val res = Mat4c(
+      -14.5 - 10.5 * I, -1.25 + 16.25 * I, 25.75 + 3.75 * I, -1.75 - 18.25 * I,
+      -4.5 - 6.0 * I, 6.0 - 6.0 * I, -5.5 + 10.0 * I, 7.0 - 0.5 * I,
+      18.5 + 15.5 * I, -6.5 - 20.5 * I, -24.5 - 11.5 * I, 6.25 + 19.25 * I,
+      2.5 - 0.5 * I, 3.75 + 12.25 * I, 12.5 - 5.75 * I, -13.0 - 9.75 * I
+    )
+    assert(mat.adjugate === res)
   }
 
   ignore("Inverse matrix") {
@@ -366,8 +403,20 @@ class Mat4cSuite extends AnyFunSuite {
     assert(a.power(3) == a * a * a)
   }
 
-  ignore("Matrix absolute value") {
-    // TODO
+  test("Matrix absolute value") {
+    val mat = Mat4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0,
+      3.0 + I, 2.0 + 3.0 * I, 2.5 + 1.5 * I, 2.0 * I
+    )
+    val res = Mat4d(
+      math.sqrt(5.0), math.sqrt(13.0) / 2.0, math.sqrt(5.0), 3.0,
+      math.sqrt(5.0 / 2.0), math.sqrt(13.0), math.sqrt(5.0), math.sqrt(5.0),
+      math.sqrt(13.0), 1.0, math.sqrt(17.0 / 2.0), 1.0,
+      math.sqrt(10.0), math.sqrt(13.0), math.sqrt(17.0 / 2.0), 2.0
+    )
+    assert(mat.abs === res)
   }
 
   ignore("Orthonormalized matrix") {

@@ -1,7 +1,6 @@
 package io.github.scalamath.cmplxlib;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestMat3c {
@@ -93,15 +92,34 @@ public class TestMat3c {
     }
 
     @Test
-    @Ignore
     public void testMatrixDividedByComplex() {
-        // TODO
+        var mat = new Mat3c(
+            new Complex(1.0, 2.0), new Complex(1.5, 1.0), new Complex(2.0, 1.0),
+            new Complex(0.5, 1.5), new Complex(3.0, 2.0), new Complex(1.0, 2.0),
+            new Complex(2.0, 3.0), new Complex(0.0, 1.0), new Complex(1.5, 2.5)
+        );
+        var z = new Complex(1.5, 1.0);
+        var res = new Mat3c(
+            new Complex(3.5 / 3.25, 2.0 / 3.25), new Complex(1.0, 0.0), new Complex(4.0 / 3.25, -0.5 / 3.25),
+            new Complex(2.25 / 3.25, 1.75 / 3.25), new Complex(6.5 / 3.25, 0.0), new Complex(3.5 / 3.25, 2.0 / 3.25),
+            new Complex(6.0 / 3.25, 2.5 / 3.25), new Complex(1.0 / 3.25, 1.5 / 3.25), new Complex(4.75 / 3.25, 2.25 / 3.25)
+        );
+        Assert.assertEquals(res, mat.dividedBy(z));
     }
 
     @Test
-    @Ignore
     public void testMatrixDividedByReal() {
-        // TODO
+        var mat = new Mat3c(
+            new Complex(1.0, 2.0), new Complex(1.5, 1.0), new Complex(2.0, 1.0),
+            new Complex(0.5, 1.5), new Complex(3.0, 2.0), new Complex(1.0, 2.0),
+            new Complex(2.0, 3.0), new Complex(0.0, 1.0), new Complex(1.5, 2.5)
+        );
+        var res = new Mat3c(
+            new Complex(0.5, 1.0), new Complex(0.75, 0.5), new Complex(1.0, 0.5),
+            new Complex(0.25, 0.75), new Complex(1.5, 1.0), new Complex(0.5, 1.0),
+            new Complex(1.0, 1.5), new Complex(0.0, 0.5), new Complex(0.75, 1.25)
+        );
+        Assert.assertEquals(res, mat.dividedBy(2.0));
     }
 
     @Test
@@ -151,9 +169,23 @@ public class TestMat3c {
     }
 
     @Test
-    @Ignore
     public void testProductWithA3x4Matrix() {
-        // TODO
+        var a = new Mat3c(
+            new Complex(1.0, 2.0), new Complex(1.5, 1.0), new Complex(2.0, 1.0),
+            new Complex(0.5, 1.5), new Complex(3.0, 2.0), new Complex(1.0, 2.0),
+            new Complex(2.0, 3.0), new Complex(0.0, 1.0), new Complex(1.5, 2.5)
+        );
+        var b = new Mat3x4c(
+            new Complex(2.0, 2.5), new Complex(3.0, 0.5), new Complex(1.0, 2.0), new Complex(1.5, 1.0),
+            new Complex(1.0, 1.5), new Complex(4.0, 3.5), new Complex(1.5, 2.0), new Complex(2.0, 0.5),
+            new Complex(3.0, 0.5), new Complex(1.0, 1.0), new Complex(2.5, 0.0), new Complex(2.0, 1.5)
+        );
+        var res = new Mat3x4c(
+            new Complex(2.5, 13.75), new Complex(5.5, 18.75), new Complex(2.25, 11.0), new Complex(4.5, 11.75),
+            new Complex(-0.75, 17.25), new Complex(4.75, 26.25), new Complex(0.5, 16.5), new Complex(3.25, 13.75),
+            new Complex(-1.75, 20.25), new Complex(0.0, 18.0), new Complex(-2.25, 14.75), new Complex(-1.25, 15.75)
+        );
+        Assert.assertEquals(res, a.multiply(b));
     }
 
     @Test

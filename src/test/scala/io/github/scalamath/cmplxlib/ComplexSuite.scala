@@ -242,7 +242,18 @@ class ComplexSuite extends AnyFunSuite {
     assert(Complex.log(z) === res)
   }
 
-  // TODO: Power
+  ignore("Number raised to the power of a complex number") {
+    // TODO
+  }
+
+  test("Complex number raised to an integer power") {
+    val z = Complex(3.0, 2.0)
+    assert(Complex.pow(z, 3.0) === z * z * z)
+  }
+
+  ignore("Complex number raised to a complex power") {
+    // TODO
+  }
 
   test("Sine of a complex number given two values") {
     val sin = Complex.sin(3.0, 2.0)

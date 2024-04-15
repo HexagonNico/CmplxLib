@@ -12,8 +12,13 @@ class Mat3x4cSuite extends AnyFunSuite {
     case _ => false
   }
 
-  implicit val vectorEquality: Equality[Vec4c] = (a: Vec4c, b: Any) => b match {
+  implicit val vector4Equality: Equality[Vec4c] = (a: Vec4c, b: Any) => b match {
     case b: Vec4c => a ~= b
+    case _ => false
+  }
+
+  implicit val vector3Equality: Equality[Vec3c] = (a: Vec3c, b: Any) => b match {
+    case b: Vec3c => a ~= b
     case _ => false
   }
 
@@ -134,12 +139,33 @@ class Mat3x4cSuite extends AnyFunSuite {
     assert(1.5 * mat === res)
   }
 
-  ignore("Matrix divided by a complex number") {
-    // TODO
+  test("Matrix divided by a complex number") {
+    val mat = Mat3x4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0
+    )
+    val z = 1.5 + I
+    val res = Mat3x4c(
+      3.5 / 3.25 + 2.0 / 3.25 * I, 1.0, 4.0 / 3.25 - 0.5 / 3.25 * I, 4.5 / 3.25 - 3.0 / 3.25 * I,
+      2.25 / 3.25 + 1.75 / 3.25 * I, 6.5 / 3.25, 3.5 / 3.25 + 2.0 / 3.25 * I, 4.0 / 3.25 - 0.5 / 3.25 * I,
+      6.0 / 3.25 + 2.5 / 3.25 * I, 1.0 / 3.25 + 1.5 / 3.25 * I, 4.75 / 3.25 + 2.25 / 3.25 * I, 1.5 / 3.25 - 1.0 / 3.25 * I
+    )
+    assert(mat / z === res)
   }
 
-  ignore("Matrix divided by a real number") {
-    // TODO
+  test("Matrix divided by a real number") {
+    val mat = Mat3x4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0
+    )
+    val res = Mat3x4c(
+      0.5 + I, 0.75 + 0.5 * I, 1.0 + 0.5 * I, 1.5,
+      0.25 + 0.75 * I, 1.5 + I, 0.5 + I, 1.0 + 0.5 * I,
+      1.0 + 1.5 * I, 0.5 * I, 0.75 + 1.25 * I, 0.5
+    )
+    assert(mat / 2.0 === res)
   }
 
   test("Access the rows of a matrix") {
@@ -204,7 +230,7 @@ class Mat3x4cSuite extends AnyFunSuite {
     assertThrows[MatchError] {mat.col(4)}
   }
 
-  ignore("Matrix-vector product") {
+  test("Matrix-vector product") {
     val mat = Mat3x4c(
       1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
       0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
@@ -212,10 +238,10 @@ class Mat3x4cSuite extends AnyFunSuite {
     )
     val vec = Vec4c(1.0 + I, 2.0 + 3.0 * I, 1.0 - I, 1.0)
     val res = Vec3c(5.0 + 8.5 * I, 4.0 + 17.0 * I, 1.0 + 8.0 * I)
-    assert(mat * vec === res) // TODO
+    assert(mat * vec === res)
   }
 
-  ignore("Matrix-vector product by values") {
+  test("Matrix-vector product by values") {
     val mat = Mat3x4c(
       1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
       0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
@@ -223,10 +249,10 @@ class Mat3x4cSuite extends AnyFunSuite {
     )
     val vec = mat * (1.0 + I, 2.0 + 3.0 * I, 1.0 - I, 1.0)
     val res = Vec3c(5.0 + 8.5 * I, 4.0 + 17.0 * I, 1.0 + 8.0 * I)
-    assert(vec === res) // TODO
+    assert(vec === res)
   }
 
-  ignore("Matrix product with a 4x4 matrix") {
+  test("Matrix product with a 4x4 matrix") {
     val a = Mat3x4c(
       1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
       0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
@@ -242,7 +268,7 @@ class Mat3x4cSuite extends AnyFunSuite {
       14.5 + 24.25 * I, 11.5 + 24.75 * I, 11.25 + 15.5 * I, 7.5 + 20.75 * I,
       3.75 + 28.25 * I, 6.75 + 32.25 * I, 5.0 + 22.5 * I, 2.25 + 20.75 * I,
       2.25 + 23.75 * I, 2.0 + 20.0 * I, 0.75 + 16.25 * I, -0.25 + 18.75 * I
-    ) // TODO
+    )
     assert(a * b === res)
   }
 
@@ -260,8 +286,18 @@ class Mat3x4cSuite extends AnyFunSuite {
     assert(mat.conjugate == res)
   }
 
-  ignore("Matrix absolute value") {
-    // TODO
+  test("Matrix absolute value") {
+    val mat = Mat3x4c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I, 3.0,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I, 2.0 + I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I, 1.0
+    )
+    val res = Mat3x4d(
+      math.sqrt(5.0), math.sqrt(13.0) / 2.0, math.sqrt(5.0), 3.0,
+      math.sqrt(5.0 / 2.0), math.sqrt(13.0), math.sqrt(5.0), math.sqrt(5.0),
+      math.sqrt(13.0), 1.0, math.sqrt(17.0 / 2.0), 1.0
+    )
+    assert(mat.abs === res)
   }
 
   ignore("Orthonormalized matrix") {

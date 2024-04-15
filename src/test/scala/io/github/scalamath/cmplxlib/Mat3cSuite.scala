@@ -117,7 +117,7 @@ class Mat3cSuite extends AnyFunSuite {
       0.75 + 2.25 * I, 4.5 + 3.0 * I, 1.5 + 3.0 * I,
       3.0 + 4.5 * I, 1.5 * I, 2.25 + 3.75 * I
     )
-    assert(mat * 1.5 == res)
+    assert(mat * 1.5 === res)
   }
 
   test("Matrix multiplied by a real number commutativity") {
@@ -131,15 +131,36 @@ class Mat3cSuite extends AnyFunSuite {
       0.75 + 2.25 * I, 4.5 + 3.0 * I, 1.5 + 3.0 * I,
       3.0 + 4.5 * I, 1.5 * I, 2.25 + 3.75 * I
     )
-    assert(1.5 * mat == res)
+    assert(1.5 * mat === res)
   }
 
-  ignore("Matrix divided by a complex number") {
-    // TODO
+  test("Matrix divided by a complex number") {
+    val mat = Mat3c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I
+    )
+    val z = 1.5 + I
+    val res = Mat3c(
+      3.5 / 3.25 + 2.0 / 3.25 * I, 1.0, 4.0 / 3.25 - 0.5 / 3.25 * I,
+      2.25 / 3.25 + 1.75 / 3.25 * I, 6.5 / 3.25, 3.5 / 3.25 + 2.0 / 3.25 * I,
+      6.0 / 3.25 + 2.5 / 3.25 * I, 1.0 / 3.25 + 1.5 / 3.25 * I, 4.75 / 3.25 + 2.25 / 3.25 * I
+    )
+    assert(mat / z === res)
   }
 
-  ignore("Matrix divided by a real number") {
-    // TODO
+  test("Matrix divided by a real number") {
+    val mat = Mat3c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I
+    )
+    val res = Mat3c(
+      0.5 + I, 0.75 + 0.5 * I, 1.0 + 0.5 * I,
+      0.25 + 0.75 * I, 1.5 + I, 0.5 + I,
+      1.0 + 1.5 * I, 0.5 * I, 0.75 + 1.25 * I
+    )
+    assert(mat / 2.0 === res)
   }
 
   test("Access the rows of a matrix") {
@@ -241,8 +262,23 @@ class Mat3cSuite extends AnyFunSuite {
     assert(a * b == res)
   }
 
-  ignore("Matrix product with a 3x4 matrix") {
-    // TODO
+  test("Matrix product with a 3x4 matrix") {
+    val a = Mat3c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I
+    )
+    val b = Mat3x4c(
+      2.0 + 2.5 * I, 3.0 + 0.5 * I, 1.0 + 2.0 * I, 1.5 + I,
+      1.0 + 1.5 * I, 4.0 + 3.5 * I, 1.5 + 2.0 * I, 2.0 + 0.5 * I,
+      3.0 + 0.5 * I, 1.0 + I, 2.5, 2.0 + 1.5 * I
+    )
+    val res = Mat3x4c(
+      2.5 + 13.75 * I, 5.5 + 18.75 * I, 2.25 + 11.0 * I, 4.5 + 11.75 * I,
+      -0.75 + 17.25 * I, 4.75 + 26.25 * I, 0.5 + 16.5 * I, 3.25 + 13.75 * I,
+      -1.75 + 20.25 * I, 18.0 * I, -2.25 + 14.75 * I, -1.25 + 15.75 * I
+    )
+    assert(a * b === res)
   }
 
   test("Transposed matrix") {
@@ -310,12 +346,32 @@ class Mat3cSuite extends AnyFunSuite {
     assert(mat.determinant == det)
   }
 
-  ignore("Adjugate matrix") {
-    // TODO
+  test("Adjugate matrix") {
+    val mat = Mat3c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I
+    )
+    val res = Mat3c(
+      1.5 + 9.5 * I, -0.75 - 3.25 * I, -4.5 - 3.0 * I,
+      -1.0 + 3.5 * I, -4.5 - 2.5 * I, 2.5 - 0.5 * I,
+      -1.5 - 12.5 * I, 2.0 + 5.5 * I, -0.25 + 5.25 * I
+    )
+    assert(mat.adjugate === res)
   }
 
   ignore("Inverse matrix") {
-    // TODO
+    val mat = Mat3c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I
+    )
+    val res = Mat3c(
+      -0.42461 - 0.41230 * I, 0.15692 + 0.13230 * I, 0.33230 - 0.01846 * I,
+      -0.08 - 0.20923 * I, 0.31384 - 0.04307 * I, -0.10461 + 0.11692 * I,
+      0.53538 + 0.56 * I, -0.30153 - 0.19692 * I, -0.18153 - 0.26769 * I
+    )
+    assert(mat.inverse === res) // TODO: Precision
   }
 
   test("Matrix power") {
@@ -327,8 +383,18 @@ class Mat3cSuite extends AnyFunSuite {
     assert(a.power(3) == (a * a * a))
   }
 
-  ignore("Matrix absolute value") {
-    // TODO
+  test("Matrix absolute value") {
+    val mat = Mat3c(
+      1.0 + 2.0 * I, 1.5 + I, 2.0 + I,
+      0.5 + 1.5 * I, 3.0 + 2.0 * I, 1.0 + 2.0 * I,
+      2.0 + 3.0 * I, I, 1.5 + 2.5 * I
+    )
+    val res = Mat3d(
+      math.sqrt(5.0), math.sqrt(13.0) / 2.0, math.sqrt(5.0),
+      math.sqrt(5.0 / 2.0), math.sqrt(13.0), math.sqrt(5.0),
+      math.sqrt(13.0), 1.0, math.sqrt(17.0 / 2.0)
+    )
+    assert(mat.abs === res)
   }
 
   ignore("Orthonormalized matrix") {

@@ -1,5 +1,6 @@
 package io.github.scalamath.cmplxlib
 
+import io.github.scalamath
 import io.github.scalamath.cmplxlib.Complex.I
 import io.github.scalamath.vecmatlib.Vec2d
 import org.scalactic.Equality
@@ -179,8 +180,9 @@ class Vec2cSuite extends AnyFunSuite {
     assert(b.isNormalized)
   }
 
-  ignore("Limit length of a vector") {
-    // TODO
+  test("Limit length of a vector") {
+    val vec = Vec2c(1.0 + 2.0 * I, 3.0 + 4.0 * I)
+    assert(vec.limitLength(2.0).length === 2.0 +- scalamath.Epsilon)
   }
 
   test("Vector absolute value") {

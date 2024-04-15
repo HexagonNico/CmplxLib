@@ -1,7 +1,6 @@
 package io.github.scalamath.cmplxlib;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestMat4c {
@@ -103,19 +102,42 @@ public class TestMat4c {
         );
         Assert.assertEquals(res, mat.multipliedBy(1.5));
     }
-    
+
     @Test
-    @Ignore
     public void testMatrixDividedByComplex() {
-        // TODO
+        var mat = new Mat4c(
+            new Complex(1.0, 2.0), new Complex(1.5, 1.0), new Complex(2.0, 1.0), new Complex(3.0, 0.0),
+            new Complex(0.5, 1.5), new Complex(3.0, 2.0), new Complex(1.0, 2.0), new Complex(2.0, 1.0),
+            new Complex(2.0, 3.0), new Complex(0.0, 1.0), new Complex(1.5, 2.5), new Complex(1.0, 0.0),
+            new Complex(3.0, 1.0), new Complex(2.0, 3.0), new Complex(2.5, 1.5), new Complex(0.0, 2.0)
+        );
+        var z = new Complex(1.5, 1.0);
+        var res = new Mat4c(
+            new Complex(3.5 / 3.25, 2.0 / 3.25), new Complex(1.0, 0.0), new Complex(4.0 / 3.25, -0.5 / 3.25), new Complex(4.5 / 3.25, -3.0 / 3.25),
+            new Complex(2.25 / 3.25, 1.75 / 3.25), new Complex(6.5 / 3.25, 0.0), new Complex(3.5 / 3.25, 2.0 / 3.25), new Complex(4.0 / 3.25, -0.5 / 3.25),
+            new Complex(6.0 / 3.25, 2.5 / 3.25), new Complex(1.0 / 3.25, 1.5 / 3.25), new Complex(4.75 / 3.25, 2.25 / 3.25), new Complex(1.5 / 3.25, -1.0 / 3.25),
+            new Complex(5.5 / 3.25, -1.5 / 3.25), new Complex(6.0 / 3.25, 2.5 / 3.25), new Complex(5.25 / 3.25, -0.25 / 3.25), new Complex(2.0 / 3.25, 3.0 / 3.25)
+        );
+        Assert.assertEquals(res, mat.dividedBy(z));
     }
-    
+
     @Test
-    @Ignore
     public void testMatrixDividedByReal() {
-        // TODO
+        var mat = new Mat4c(
+            new Complex(1.0, 2.0), new Complex(1.5, 1.0), new Complex(2.0, 1.0), new Complex(3.0, 0.0),
+            new Complex(0.5, 1.5), new Complex(3.0, 2.0), new Complex(1.0, 2.0), new Complex(2.0, 1.0),
+            new Complex(2.0, 3.0), new Complex(0.0, 1.0), new Complex(1.5, 2.5), new Complex(1.0, 0.0),
+            new Complex(3.0, 1.0), new Complex(2.0, 3.0), new Complex(2.5, 1.5), new Complex(0.0, 2.0)
+        );
+        var res = new Mat4c(
+            new Complex(0.5, 1.0), new Complex(0.75, 0.5), new Complex(1.0, 0.5), new Complex(1.5, 0.0),
+            new Complex(0.25, 0.75), new Complex(1.5, 1.0), new Complex(0.5, 1.0), new Complex(1.0, 0.5),
+            new Complex(1.0, 1.5), new Complex(0.0, 0.5), new Complex(0.75, 1.25), new Complex(0.5, 0.0),
+            new Complex(1.5, 0.5), new Complex(1.0, 1.5), new Complex(1.25, 0.75), new Complex(0.0, 1.0)
+        );
+        Assert.assertEquals(res, mat.dividedBy(2.0));
     }
-    
+
     @Test
     public void testMatrixVectorProduct() {
         var mat = new Mat4c(
@@ -128,7 +150,7 @@ public class TestMat4c {
         var res = new Vec4c(new Complex(5.0, 8.5), new Complex(4.0, 17.0), new Complex(1.0, 8.0), new Complex(1.0, 17.0));
         Assert.assertEquals(res, mat.multiply(vec));
     }
-    
+
     @Test
     public void testMatrixVectorProductByValues() {
         var mat = new Mat4c(
@@ -144,7 +166,7 @@ public class TestMat4c {
         var res = new Vec4c(new Complex(5.0, 8.5), new Complex(4.0, 17.0), new Complex(1.0, 8.0), new Complex(1.0, 17.0));
         Assert.assertEquals(res, mat.multiply(x, y, z, w));
     }
-    
+
     @Test
     public void testProductWithA4x4Matrix() {
         var a = new Mat4c(
@@ -167,7 +189,7 @@ public class TestMat4c {
         );
         Assert.assertEquals(res, a.multiply(b));
     }
-    
+
     @Test
     public void testEqualsApprox() {
         var a = new Mat4c(
