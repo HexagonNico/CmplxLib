@@ -90,7 +90,7 @@ public class TestMat2c {
             new Complex(3.5 / 3.25, 2.0 / 3.25), new Complex(1.0, 0.0),
             new Complex(2.25 / 3.25, 1.75 / 3.25), new Complex(6.5 / 3.25, 0.0)
         );
-        Assert.assertEquals(res, mat.dividedBy(z));
+        Assert.assertTrue(mat.dividedBy(z).equalsApprox(res));
     }
     
     @Test

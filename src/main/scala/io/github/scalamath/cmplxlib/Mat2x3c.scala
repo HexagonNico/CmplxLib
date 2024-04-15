@@ -343,7 +343,7 @@ case class Mat2x3c(m00: Complex, m01: Complex, m02: Complex, m10: Complex, m11: 
    *
    * @return A matrix with all elements in absolute value.
    */
-  def abs: Mat2x3c = Mat2x3c(
+  def abs: Mat2x3d = Mat2x3d(
     Complex.abs(this.m00), Complex.abs(this.m01), Complex.abs(this.m02),
     Complex.abs(this.m10), Complex.abs(this.m11), Complex.abs(this.m12)
   )

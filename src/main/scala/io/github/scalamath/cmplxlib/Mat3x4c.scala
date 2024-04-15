@@ -413,7 +413,7 @@ case class Mat3x4c(
    *
    * @return A matrix with all elements in absolute value.
    */
-  def abs: Mat3x4c = Mat3x4c(
+  def abs: Mat3x4d = Mat3x4d(
     Complex.abs(this.m00), Complex.abs(this.m01), Complex.abs(this.m02), Complex.abs(this.m03),
     Complex.abs(this.m10), Complex.abs(this.m11), Complex.abs(this.m12), Complex.abs(this.m13),
     Complex.abs(this.m20), Complex.abs(this.m21), Complex.abs(this.m22), Complex.abs(this.m23)

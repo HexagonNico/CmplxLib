@@ -507,7 +507,7 @@ case class Mat3c(
    *
    * @return A matrix with all elements in absolute value.
    */
-  def abs: Mat3c = Mat3c(
+  def abs: Mat3d = Mat3d(
     Complex.abs(this.m00), Complex.abs(this.m01), Complex.abs(this.m02),
     Complex.abs(this.m10), Complex.abs(this.m11), Complex.abs(this.m12),
     Complex.abs(this.m20), Complex.abs(this.m21), Complex.abs(this.m22)
