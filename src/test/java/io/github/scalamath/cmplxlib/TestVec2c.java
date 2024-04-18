@@ -83,7 +83,7 @@ public class TestVec2c {
         var vec = new Vec2c(new Complex(8.0, 6.0), new Complex(6.0, 8.0));
         var x = new Complex(2.0, 2.0);
         var y = new Complex(4.0, 2.0);
-        var res = new Vec2c(new Complex(3.5, 0.5), new Complex(2.0, 1.0));
+        var res = new Vec2c(new Complex(3.5, -0.5), new Complex(2.0, 1.0));
         Assert.assertEquals(res, vec.divide(x, y));
     }
 
@@ -91,7 +91,7 @@ public class TestVec2c {
     public void testComponentWiseDivisionWithVector() {
         var a = new Vec2c(new Complex(8.0, 6.0), new Complex(6.0, 8.0));
         var b = new Vec2c(new Complex(2.0, 2.0), new Complex(4.0, 2.0));
-        var res = new Vec2c(new Complex(3.5, 0.5), new Complex(2.0, 1.0));
+        var res = new Vec2c(new Complex(3.5, -0.5), new Complex(2.0, 1.0));
         Assert.assertEquals(res, a.divide(b));
     }
 

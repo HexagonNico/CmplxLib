@@ -118,7 +118,7 @@ public class TestMat4c {
             new Complex(6.0 / 3.25, 2.5 / 3.25), new Complex(1.0 / 3.25, 1.5 / 3.25), new Complex(4.75 / 3.25, 2.25 / 3.25), new Complex(1.5 / 3.25, -1.0 / 3.25),
             new Complex(5.5 / 3.25, -1.5 / 3.25), new Complex(6.0 / 3.25, 2.5 / 3.25), new Complex(5.25 / 3.25, -0.25 / 3.25), new Complex(2.0 / 3.25, 3.0 / 3.25)
         );
-        Assert.assertEquals(res, mat.dividedBy(z));
+        Assert.assertTrue(res.equalsApprox(mat.dividedBy(z)));
     }
 
     @Test

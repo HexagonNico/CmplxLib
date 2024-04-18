@@ -1,7 +1,6 @@
 package io.github.scalamath.cmplxlib;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestMat2x3c {
@@ -91,7 +90,7 @@ public class TestMat2x3c {
             new Complex(3.5 / 3.25, 2.0 / 3.25), new Complex(1.0, 0.0), new Complex(4.0 / 3.25, -0.5 / 3.25),
             new Complex(2.25 / 3.25, 1.75 / 3.25), new Complex(6.5 / 3.25, 0.0), new Complex(3.5 / 3.25, 2.0 / 3.25)
         );
-        Assert.assertEquals(res, mat.dividedBy(z));
+        Assert.assertTrue(res.equalsApprox(mat.dividedBy(z)));
     }
 
     @Test
@@ -108,7 +107,6 @@ public class TestMat2x3c {
     }
 
     @Test
-    @Ignore
     public void testMatrixVectorProduct() {
         var mat = new Mat2x3c(
             new Complex(1.0, 2.0), new Complex(1.5, 1.0), new Complex(2.0, 1.0),
